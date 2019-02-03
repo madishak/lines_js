@@ -39,7 +39,16 @@ const backSort = () => {
     let arr = newArr.reverse();
     for (let j = 0; j < arr.length-1; j++) {
         let actualArr = newArr[0];
+        let t = actualArr[0];
+        let y = actualArr[3];
+        if (window.document.getElementById(t).textContent == '7') {
+            alert("yes");
+        }
+
+
+
         return drawArray(actualArr);
+
         // }
     }
 
@@ -58,6 +67,7 @@ const drawArray = (arr) => {
     for (let i = 0; i < arr.length; i++) {
         newDiv = document.createElement('div');
         newDiv.innerHTML = arr[i];
+        newDiv.id = arr[i];
         newDiv.className = "line";
         inner.appendChild(newDiv);
         newDiv.style.height = 10 + arr[i]+'px';

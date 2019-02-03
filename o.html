@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button class="form__button" id='show'  onclick="f()" type="button">showArray</button>
+<div id="parentElement">
+    <span id="childElement">foo bar</span>
+</div>
+
+<script>
+    function f() {
+
+
+//     Создаем новый <span>
+    var sp1 = document.createElement("span");
+        sp1.innerHTML = 'fdsg  ';
+    // Получаем ссылку на элемент, перед которым мы хотим вставить sp1
+    var sp2 = document.getElementById("childElement");
+    //Получаем ссылку на родителя sp2
+    var parentDiv = sp2.parentNode;
+
+    // Вставляем sp1 перед sp2
+    parentDiv.insertBefore(sp1, sp2);
+        var parentElement = document.getElementById('parentElement');
+// Получаем ссылку на первый дочерний элемент
+        var theFirstChild = parentElement.firstChild;
+
+// Создаем новый элемент, который будем добавлять
+        var newElement = document.createElement("div");
+       newElement.innerHTML = 'tiffo ';
+       newElement.id = "t" + 1;
+// Вставляем новый элемент перед первым дочерним элементом
+        parentElement.insertBefore(newElement, theFirstChild);
+       if (window.document.getElementById('t1')) {
+            alert("yes");
+        }
+        alert("no");
+    }
+</script>
+</body>
+</html>

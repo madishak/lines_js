@@ -1,0 +1,29 @@
+
+<html>
+<style>
+    .div1 {
+        position: relative;
+        top: 0;
+        transition: top 5s cubic-bezier(0, 0, 1, 1);
+    }
+</style>
+<script>
+    function chg(){
+        var y = "div1";
+        var y2 = "div2";
+        var d1=document.getElementById(y);
+        var d2=document.getElementById(y2);
+        var d11=d1.cloneNode(true);
+        var d22=d2.cloneNode(true);
+        d2.parentNode.insertBefore(d11,d2);
+        d1.parentNode.insertBefore(d22,d1);
+        d1.parentNode.removeChild(d1);
+        d2.parentNode.removeChild(d2);
+    }
+</script>
+<body>
+<div id="div1">aaaaa</div>
+<div id="div2">bbbbb</div>
+<button onclick="chg()">Click</button>
+</body>
+</html>
