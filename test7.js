@@ -51,12 +51,12 @@ const s = () => {
             for (let j = i + 1; j < arr.length; j++) {
 
                 if (arr[i] > arr[j]) {
-
+                    l = [arr.indexOf(arr[i]), arr.indexOf(arr[j]),...l];
                     let temp = arr[i];
                     arr[i] = arr[j];
                     arr[j] = temp;
                     newArr = [arr,...newArr];
-                    l = [arr.indexOf(arr[i]), arr.indexOf(arr[j]),...l];
+
                     // alert(l);
                     // return arr;
 
@@ -81,7 +81,7 @@ const s = () => {
 const change = () => {
     let arr = getArray();
     let array = s();
-    let indexArray = array.reverse();
+    let indexArray = array;
 
 
     for (let i = 0; i < arr.length; i++) {
@@ -101,10 +101,10 @@ const change = () => {
                         let d2 = document.getElementById(second);
                         let w1 = d1.style.width;
                         let w2 = d2.style.width;
-                        d1.style.left = '100px' + w1;
-                        d1.style.transition = 'left 5s cubic-bezier(0, 0, 1, 1)';
-                        d2.style.right = '100px' + w2;
-                        d2.style.transition = 'right 5s cubic-bezier(0, 0, 1, 1)';
+                        // d1.style.left = '100px' + w1;
+                        // d1.style.transition = 'left 5s cubic-bezier(0, 0, 1, 1)';
+                        // d2.style.right = '100px' + w2;
+                        // d2.style.transition = 'right 5s cubic-bezier(0, 0, 1, 1)';
 
                         let d11 = d1.cloneNode(true);
                         let d22 = d2.cloneNode(true);
