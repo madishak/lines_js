@@ -78,16 +78,16 @@ const increaseSort2 = () => {
                 arr[i + 1] = temp;
                 l = [arr.indexOf(arr[i]), arr.indexOf(arr[i+1]), ...l];
                 pointer = pointer + 1;
-                // return drawArray(arr);
+                return drawArray(arr);
                 // alert(arr);
-                let first = arr[i];
-                let second = arr[i+1];
-                let d1 = document.getElementById(first);
-                let d2 = document.getElementById(second);
-                let w1 = d1.style.width;
-                let w2 = d2.style.width;
-                d1.style.left = w1;
-                d1.style.transition = 'left 5s cubic-bezier(0, 0, 1, 1)';
+                // let first = arr[i];
+                // let second = arr[i+1];
+                // let d1 = document.getElementById(first);
+                // let d2 = document.getElementById(second);
+                // let w1 = d1.style.width;
+                // let w2 = d2.style.width;
+                // d1.style.left = w1;
+                // d1.style.transition = 'left 5s cubic-bezier(0, 0, 1, 1)';
 
 
 
