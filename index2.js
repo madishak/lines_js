@@ -3,7 +3,11 @@ function sortAndDraw (r) {
     this.nums = r;
     this.arr;
     this.l = [];
-    this.pointer;
+    // this.pointer;
+    this.newDiv;
+    this.container;
+
+    //
     this.gArray = function () {
 
         this.arr = this.nums.split("").map(element => Number(element));
@@ -17,20 +21,37 @@ function sortAndDraw (r) {
 
     }
     this.increaseSort = function () {
-        while (!this.pointer) {
-            for (let i = 0; i < this.arr.length; i++) {
-                if (this.arr[i] > this.arr[i + 1]) {
+            for (let i = 0; i < this.arr.length - 1; i++) {
+                for (let j = i + 1; j < this.arr.length; j++) {
+                    if (this.arr[i] > this.arr[j]) {
 
-                    let temp = this.arr[i];
-                    this.arr[i] = this.arr[i + 1];
-                    this.arr[i + 1] = temp;
-                    this.l = [this.arr.indexOf(this.arr[i]), this.arr.indexOf(this.arr[i+1]), ...this.l];
-                    this.pointer = this.pointer + 1;
-                    return this.arr;
-                    // alert(this.l);
+                        let temp = this.arr[i];
+                        this.arr[i] = this.arr[j];
+                        this.arr[j] = temp;
+                        this.l = [i, j, ...this.l];
+                        // this.pointer = this.pointer + 1;
+                        return this.arr;
+                        // alert(this.l);
+                    }
                 }
             }
-        }
+
+        // while (!this.pointer) {
+        // for (let i = 0; i < this.arr.length ; i++) {
+        //
+        //         if (this.arr[i] > this.arr[i+1]) {
+        //
+        //             let temp = this.arr[i];
+        //             this.arr[i] = this.arr[i+1];
+        //             this.arr[i+1] = temp;
+        //             this.l = [i, i+1, ...this.l];
+        //             // this.pointer = this.pointer + 1;
+        //             return this.arr;
+        //             // alert(this.l);
+        //         }
+        //     }
+        //
+        // }
     }
 
     this.backSort = function () {
@@ -42,7 +63,7 @@ function sortAndDraw (r) {
                 this.arr[this.l[1]] = temp;
                 this.l.shift(this.l[0]);
                 this.l.shift(this.l[1]);
-                return this.arr
+                return this.drawArray(this.arr);
             }
         }
 
@@ -54,29 +75,45 @@ function sortAndDraw (r) {
     }
 
 
+    this.drawArray = function (arr) {
 
+        this.container = document.createElement('div');
+        this.container.className = "line__inner";
+        document.body.appendChild(this.container);
+        for (let i = 0; i < arr.length; i++) {
+
+            this.newDiv = document.createElement('div');
+            this.newDiv.innerHTML = arr[i];
+            this.newDiv.id = arr[i];
+            this.newDiv.className = "line";
+            this.container.appendChild(this.newDiv);
+            this.newDiv.style.height = 15 * arr[i]+'px';
+            this.newDiv.style.display = 'block';
+        }
+
+        return this.newDiv;
+    }
+
+    // this.drawArray = function () {
+    //
+    //     this.container = document.createElement('div');
+    //     this.container.className = "line__inner";
+    //     document.body.appendChild(this.container);
+    //     for (let i = 0; i < this.arr.length; i++) {
+    //
+    //         this.newDiv = document.createElement('div');
+    //         this.newDiv.innerHTML = this.arr[i];
+    //         this.newDiv.id = this.arr[i];
+    //         this.newDiv.className = "line";
+    //         this.container.appendChild(this.newDiv);
+    //         this.newDiv.style.height = 15 * this.arr[i]+'px';
+    //         this.newDiv.style.display = 'block';
+    //     }
+    //
+    //     return this.newDiv;
+    // }
 }
 
-//
-// function drawArray (arr) {
-//     this.newDiv ;
-//     this.container;
-//     this.container = document.createElement('div');
-//     this.container.className = "line__inner";
-//     document.body.appendChild(this.container);
-//     for (let i = 0; i < arr; i++) {
-//
-//         this.newDiv  = document.createElement('div');
-//         this.newDiv.innerHTML = arr[i];
-//         this.newDiv.id = arr[i];
-//         this.newDiv.className = "line";
-//         this.container.appendChild(this.newDiv);
-//         this.newDiv.style.height = 15 * arr[i]+'px';
-//         this.newDiv.style.display = 'block';
-//     }
-//
-//     return this.newDiv;
-// }
 
 
 
@@ -111,5 +148,6 @@ decrease.onclick = function () {
 
 let indexes = document.getElementById('indexes');
 indexes.onclick = function () {
+    // let r = f.showL();
     return alert(f.showL());
 };
