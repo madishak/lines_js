@@ -1,37 +1,35 @@
+class SortAndDraw  {
+    constructor(numbersString) {
+        this.nums = numbersString;
+        this.arr;
+        this.l = [];
+        this.pointer;
+        this.newDiv;
+        this.container;
+    }
 
-function sortAndDraw (r) {
-    this.nums = r;
-    this.arr;
-    this.l = [];
-    // this.pointer;
-    this.newDiv;
-    this.container;
-
-    //
-    this.gArray = function () {
-
+    getArray()  {
         this.arr = this.nums.split("").map(element => Number(element));
-        return this.arr;
+        return  this.arr;
 
     }
 
-    this.show = function () {
-       return this.gArray();
-        // return alert(this.gArray());
-
+    showArray() {
+        return this.drawArray(this.getArray());
     }
-    this.increaseSort = function () {
-            for (let i = 0; i < this.arr.length - 1; i++) {
-                for (let j = i + 1; j < this.arr.length; j++) {
-                    if (this.arr[i] > this.arr[j]) {
-                        [this.arr[i], this.arr[j]] = [this.arr[j], this.arr[i]];
-                        this.l = [i, j, ...this.l];
-                        // this.pointer = this.pointer + 1;
-                        return this.arr;
-                        // alert(this.l);
-                    }
+
+    increaseSort() {
+        for (let i = 0; i < this.arr.length - 1; i++) {
+            for (let j = i + 1; j < this.arr.length; j++) {
+                if (this.arr[i] > this.arr[j]) {
+                    [this.arr[i], this.arr[j]] = [this.arr[j], this.arr[i]];
+                    this.l = [i, j, ...this.l];
+                    // this.pointer = this.pointer + 1;
+                    return this.drawArray(this.arr);
+                    // alert(this.l);
                 }
             }
+        }
 
         // while (!this.pointer) {
         // for (let i = 0; i < this.arr.length ; i++) {
@@ -43,7 +41,7 @@ function sortAndDraw (r) {
         //             this.arr[i+1] = temp;
         //             this.l = [i, i+1, ...this.l];
         //             // this.pointer = this.pointer + 1;
-        //             return this.arr;
+        //             return this.drawArray(this.arr);
         //             // alert(this.l);
         //         }
         //     }
@@ -51,7 +49,7 @@ function sortAndDraw (r) {
         // }
     }
 
-    this.backSort = function () {
+    backSort()  {
         for (let i = 0; i < this.arr.length; i++)
         {
             if (this.l.length != 0) {
@@ -62,15 +60,15 @@ function sortAndDraw (r) {
             }
         }
 
-        ;
+
     }
 
-    this.showL = function () {
+    rowOfIndexes() {
         return this.l;
     }
 
 
-    this.drawArray = function (arr) {
+    drawArray(arr) {
 
         this.container = document.createElement('div');
         this.container.className = "line__inner";
@@ -85,6 +83,8 @@ function sortAndDraw (r) {
             this.newDiv.style.height = 15 * arr[i]+'px';
             this.newDiv.style.display = 'block';
         }
+        document.body.insertBefore(this.container, h1);
+
 
         return this.newDiv;
     }
@@ -112,37 +112,22 @@ function sortAndDraw (r) {
 
 
 
-let t = document.getElementById('input').value;
+let inputValue = document.getElementById('input').value;
 
-let f = new sortAndDraw(t);
-
-// let t = f.getArray();
-// f.drawArray(t);
-// const showInputArray = () => {
-//
-//     return alert(sortAndDraw.getArray());
-//
-// }
+let sortAndDraw = new SortAndDraw(input.value);
 
 
-let inputValue = document.getElementById('input');
-inputValue.onchange = function () {
-    f.show();
+let inputShow = document.getElementById('input');
+inputShow.addEventListener('change', () => sortAndDraw.showArray());
 
-};
 
 let increase = document.getElementById('inc');
-increase.onclick = function () {
-    return alert(f.increaseSort());
-};
+increase.addEventListener('click',() => alert(sortAndDraw.increaseSort()));
+
 
 let decrease = document.getElementById('dec');
-decrease.onclick = function () {
-    return alert(f.backSort());
-};
+decrease.addEventListener('click', () => alert(sortAndDraw.backSort()));
+
 
 let indexes = document.getElementById('indexes');
-indexes.onclick = function () {
-    // let r = f.showL();
-    return alert(f.showL());
-};
+indexes.addEventListener('click', () => alert(sortAndDraw.rowOfIndexes()));
