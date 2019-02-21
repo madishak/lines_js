@@ -122,12 +122,12 @@ inputShow.addEventListener('change', () => sortAndDraw.showArray());
 
 
 let increase = document.getElementById('inc');
-increase.addEventListener('click',() => alert(sortAndDraw.increaseSort()));
+increase.addEventListener('click',() => sortAndDraw.increaseSort());
 
 
 let decrease = document.getElementById('dec');
-decrease.addEventListener('click', () => alert(sortAndDraw.backSort()));
+decrease.addEventListener('click', () => sortAndDraw.backSort());
 
 
 let indexes = document.getElementById('indexes');
-indexes.addEventListener('click', () => alert(sortAndDraw.rowOfIndexes()));
+indexes.addEventListener('click', () => sortAndDraw.rowOfIndexes());
