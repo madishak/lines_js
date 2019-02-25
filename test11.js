@@ -1,8 +1,31 @@
 // arr = [9,5,2,3,5,8,1,0];
 arr = [7, 8, 4, 8, 3];
 let l = [];
-let pointer;
-while (!pointer) {
+let pointer = 1;
+// while (!pointer) {
+//
+//     for (let i = 0; i < arr.length; i++) {
+//
+//         if (arr[i] > arr[i + 1]) {
+//             [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
+//
+//             // let temp = arr[i];
+//             // arr[i] = arr[i + 1];
+//             // arr[i + 1] = temp;
+//             l = [i, i+1, ...l];
+//             pointer = pointer + 1;
+//
+//             alert(arr);
+//             alert(l);
+//         }
+//     }
+//
+//
+// }
+
+
+while (pointer) {
+    pointer = 0;
 
     for (let i = 0; i < arr.length; i++) {
 
@@ -13,7 +36,7 @@ while (!pointer) {
             // arr[i] = arr[i + 1];
             // arr[i + 1] = temp;
             l = [i, i+1, ...l];
-            pointer = pointer + 1;
+            pointer = 1;
 
             alert(arr);
             alert(l);
@@ -22,6 +45,7 @@ while (!pointer) {
 
 
 }
+
 
 //
 // for (let i = 0; i < arr.length - 1; i++) {

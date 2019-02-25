@@ -1,35 +1,52 @@
 class SortAndDraw  {
-    constructor(numbersString) {
-        this.nums = numbersString;
-        this.arr;
-        this.l = [];
-        this.pointer;
-        this.newDiv;
-        this.container;
+    constructor(numberString) {
+        this.arr = numberString.split("").map(element => Number(element));
+        this.listOfIndexes = [];
     }
 
-    getArray()  {
-        this.arr = this.nums.split("").map(element => Number(element));
-        return  this.arr;
 
-    }
 
     showArray() {
-        return this.drawArray(this.getArray());
+        return this.drawArray(this.arr);
+        // alert(this.arr);
     }
 
     increaseSort() {
-        for (let i = 0; i < this.arr.length - 1; i++) {
-            for (let j = i + 1; j < this.arr.length; j++) {
-                if (this.arr[i] > this.arr[j]) {
-                    [this.arr[i], this.arr[j]] = [this.arr[j], this.arr[i]];
-                    this.l = [i, j, ...this.l];
-                    // this.pointer = this.pointer + 1;
-                    return this.drawArray(this.arr);
-                    // alert(this.l);
+        // for (let i = 0; i < this.arr.length - 1; i++) {
+        //     for (let j = i + 1; j < this.arr.length; j++) {
+        //         if (this.arr[i] > this.arr[j]) {
+        //             [this.arr[i], this.arr[j]] = [this.arr[j], this.arr[i]];
+        //             this.listOfIndexes = [i, j, ...this.listOfIndexes];
+        //             // this.pointer = this.pointer + 1;
+        //             return this.drawArray(this.arr);
+        //             // alert(this.l);
+        //         }
+        //     }
+        // }
+        let pointer = 1;
+        while (pointer) {
+            pointer = 0;
+
+            for (let i = 0; i < this.arr.length; i++) {
+
+                if (this.arr[i] > this.arr[i + 1]) {
+                    [this.arr[i], this.arr[i + 1]] = [this.arr[i + 1], this.arr[i]];
+
+                    // let temp = arr[i];
+                    // arr[i] = arr[i + 1];
+                    // arr[i + 1] = temp;
+                    this.listOfIndexes = [i, i + 1, ...this.listOfIndexes];
+                    pointer = 1;
+                    return drawArray(this.arr);
+                    //
+                    // alert(this.arr);
+                    // alert(l);
                 }
             }
+
+
         }
+
 
         // while (!this.pointer) {
         // for (let i = 0; i < this.arr.length ; i++) {
@@ -49,44 +66,39 @@ class SortAndDraw  {
         // }
     }
 
-    backSort()  {
+    backSort() {
         for (let i = 0; i < this.arr.length; i++)
         {
-            if (this.l.length != 0) {
-                [this.arr[this.l[0]], this.arr[this.l[1]]] = [this.arr[this.l[1]], this.arr[this.l[0]]];
-                this.l.shift(this.l[0]);
-                this.l.shift(this.l[1]);
+            if (this.listOfIndexes.length != 0) {
+                [this.arr[this.listOfIndexes[0]], this.arr[this.listOfIndexes[1]]] = [this.arr[this.listOfIndexes[1]], this.arr[this.listOfIndexes[0]]];
+                this.listOfIndexes.shift(this.listOfIndexes[0]);
+                this.listOfIndexes.shift(this.listOfIndexes[1]);
                 return this.drawArray(this.arr);
             }
         }
-
-
     }
 
     rowOfIndexes() {
-        return this.l;
+        return this.listOfIndexes;
     }
 
 
     drawArray(arr) {
 
-        this.container = document.createElement('div');
-        this.container.className = "line__inner";
-        document.body.appendChild(this.container);
+        let container = document.createElement('div');
+        container.className = "line__inner";
+        document.body.appendChild(container);
         for (let i = 0; i < arr.length; i++) {
 
-            this.newDiv = document.createElement('div');
-            this.newDiv.innerHTML = arr[i];
-            this.newDiv.id = arr[i];
-            this.newDiv.className = "line";
-            this.container.appendChild(this.newDiv);
-            this.newDiv.style.height = 15 * arr[i]+'px';
-            this.newDiv.style.display = 'block';
+            let newDiv = document.createElement('div');
+            newDiv.innerHTML = arr[i];
+            newDiv.id = arr[i];
+            newDiv.className = "line";
+            container.appendChild(newDiv);
+            newDiv.style.height = 15 * arr[i]+'px';
+            newDiv.style.display = 'block';
         }
-        document.body.insertBefore(this.container, h1);
 
-
-        return this.newDiv;
     }
 
     // this.drawArray = function () {
@@ -114,7 +126,7 @@ class SortAndDraw  {
 
 let inputValue = document.getElementById('input').value;
 
-let sortAndDraw = new SortAndDraw(input.value);
+let sortAndDraw = new SortAndDraw(inputValue);
 
 
 let inputShow = document.getElementById('input');
