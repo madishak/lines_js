@@ -2,6 +2,7 @@ class SortAndDraw  {
     constructor(numberString) {
         this.arr = numberString.split("").map(element => Number(element));
         this.listOfIndexes = [];
+        this.changeColumns = {};
     }
 
 
@@ -36,8 +37,10 @@ class SortAndDraw  {
                     // arr[i] = arr[i + 1];
                     // arr[i + 1] = temp;
                     this.listOfIndexes = [i, i + 1, ...this.listOfIndexes];
+                    this.changeColumns.first = this.arr[i];
+                    this.changeColumns.second = this.arr[i+1];
                     pointer = 1;
-                    return drawArray(this.arr);
+                    return this.drawArray(this.arr);
                     //
                     // alert(this.arr);
                     // alert(l);
@@ -73,7 +76,7 @@ class SortAndDraw  {
                 [this.arr[this.listOfIndexes[0]], this.arr[this.listOfIndexes[1]]] = [this.arr[this.listOfIndexes[1]], this.arr[this.listOfIndexes[0]]];
                 this.listOfIndexes.shift(this.listOfIndexes[0]);
                 this.listOfIndexes.shift(this.listOfIndexes[1]);
-                return this.drawArray(this.arr);
+                return this.animateArray(this.arr);
             }
         }
     }
@@ -119,6 +122,35 @@ class SortAndDraw  {
     //
     //     return this.newDiv;
     // }
+
+
+    animateArray() {
+        let firstColl = document.getElementById(this.changeColumns.first).offsetLeft;
+        let secondColl = document.getElementById(this.changeColumns.second).offsetLeft;
+        alert(firstColl);
+        alert(secondColl);
+        [this.firstColl, this.secondColl] = [this.secondColl, this.firstColl];
+        alert(firstColl);
+        alert(secondColl);
+        document.getElementById(this.changeColumns.first).style.left = this.secondColl + 'px';
+        // for (let i = 0; i < this.arr.length; i++) {
+        //     if (this.arr[i] == this.changeColumns.first) {
+        //         alert("yes");
+        //         alert(document.getElementById(this.changeColumns.first).offsetLeft);
+        //         alert(document.getElementById(this.changeColumns.second).offsetLeft);
+        //         alert(this.changeColumns.first);
+        //         alert(this.changeColumns.second);
+        //     }
+        //     alert("no");
+        // }
+
+        //return (this.changeColumns.first + '*' + this.changeColumns.second);
+        // return alert('Madina');
+        alert("Madina");
+
+    }
+
+
 }
 
 
@@ -140,6 +172,8 @@ increase.addEventListener('click',() => sortAndDraw.increaseSort());
 let decrease = document.getElementById('dec');
 decrease.addEventListener('click', () => sortAndDraw.backSort());
 
+let ob = document.getElementById('ob');
+ob.addEventListener('click', () => sortAndDraw.animateArray());
 
 let indexes = document.getElementById('indexes');
 indexes.addEventListener('click', () => sortAndDraw.rowOfIndexes());
