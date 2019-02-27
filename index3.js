@@ -76,7 +76,7 @@ class SortAndDraw  {
                 [this.arr[this.listOfIndexes[0]], this.arr[this.listOfIndexes[1]]] = [this.arr[this.listOfIndexes[1]], this.arr[this.listOfIndexes[0]]];
                 this.listOfIndexes.shift(this.listOfIndexes[0]);
                 this.listOfIndexes.shift(this.listOfIndexes[1]);
-                return this.animateArray(this.arr);
+                return this.animateArray();
             }
         }
     }
@@ -125,14 +125,14 @@ class SortAndDraw  {
 
 
     animateArray() {
-        let firstColl = document.getElementById(this.changeColumns.first).offsetLeft;
-        let secondColl = document.getElementById(this.changeColumns.second).offsetLeft;
-        alert(firstColl);
-        alert(secondColl);
-        [this.firstColl, this.secondColl] = [this.secondColl, this.firstColl];
-        alert(firstColl);
-        alert(secondColl);
-        document.getElementById(this.changeColumns.first).style.left = this.secondColl + 'px';
+        let firstCollCoordinate = document.getElementById(this.changeColumns.first).offsetLeft;
+        let secondCollCoordinate = document.getElementById(this.changeColumns.second).offsetLeft;
+        alert(firstCollCoordinate);
+        alert(secondCollCoordinate);
+        [firstCollCoordinate, secondCollCoordinate] = [secondCollCoordinate, firstCollCoordinate];
+        alert(firstCollCoordinate);
+        alert(secondCollCoordinate);
+        document.getElementById(this.changeColumns.first).style.left = secondCollCoordinate + 'px';
         // for (let i = 0; i < this.arr.length; i++) {
         //     if (this.arr[i] == this.changeColumns.first) {
         //         alert("yes");
