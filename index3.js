@@ -40,7 +40,7 @@ class SortAndDraw  {
                     this.changeColumns.first = this.arr[i];
                     this.changeColumns.second = this.arr[i+1];
                     pointer = 1;
-                    return this.drawArray(this.arr);
+                    return this.arr;
                     //
                     // alert(this.arr);
                     // alert(l);
@@ -76,7 +76,8 @@ class SortAndDraw  {
                 [this.arr[this.listOfIndexes[0]], this.arr[this.listOfIndexes[1]]] = [this.arr[this.listOfIndexes[1]], this.arr[this.listOfIndexes[0]]];
                 this.listOfIndexes.shift(this.listOfIndexes[0]);
                 this.listOfIndexes.shift(this.listOfIndexes[1]);
-                return this.animateArray();
+                return this.arr;
+                //return this.arr;
             }
         }
     }
@@ -104,6 +105,23 @@ class SortAndDraw  {
 
     }
 
+    // drawArray() {
+    //
+    //     let container = document.createElement('div');
+    //     container.className = "line__inner";
+    //     document.body.appendChild(container);
+    //     for (let i = 0; i < this.arr.length; i++) {
+    //
+    //         let newDiv = document.createElement('div');
+    //         newDiv.innerHTML = this.arr[i];
+    //         newDiv.id = this.arr[i];
+    //         newDiv.className = "line";
+    //         container.appendChild(newDiv);
+    //         newDiv.style.height = 15 * this.arr[i]+'px';
+    //         newDiv.style.display = 'block';
+    //     }
+    //
+    // }
     // this.drawArray = function () {
     //
     //     this.container = document.createElement('div');
@@ -132,7 +150,13 @@ class SortAndDraw  {
         [firstCollCoordinate, secondCollCoordinate] = [secondCollCoordinate, firstCollCoordinate];
         alert(firstCollCoordinate);
         alert(secondCollCoordinate);
-        document.getElementById(this.changeColumns.first).style.left = secondCollCoordinate + 'px';
+        // alert(document.getElementById(this.changeColumns.first).style.width);
+        document.getElementById(this.changeColumns.first).style.right = secondCollCoordinate + 'px';
+
+
+        // for (let i = 0; i < this.arr.length; i++) {
+        //
+        // }
         // for (let i = 0; i < this.arr.length; i++) {
         //     if (this.arr[i] == this.changeColumns.first) {
         //         alert("yes");
@@ -153,24 +177,27 @@ class SortAndDraw  {
 
 }
 
+class Render {
 
+}
 
 
 let inputValue = document.getElementById('input').value;
 
 let sortAndDraw = new SortAndDraw(inputValue);
 
+let render = new Render();
 
 let inputShow = document.getElementById('input');
 inputShow.addEventListener('change', () => sortAndDraw.showArray());
 
 
 let increase = document.getElementById('inc');
-increase.addEventListener('click',() => sortAndDraw.increaseSort());
+increase.addEventListener('click',() => sortAndDraw.drawArray(sortAndDraw.increaseSort()));
 
 
 let decrease = document.getElementById('dec');
-decrease.addEventListener('click', () => sortAndDraw.backSort());
+decrease.addEventListener('click', () => sortAndDraw.backSort().animateArray());
 
 let ob = document.getElementById('ob');
 ob.addEventListener('click', () => sortAndDraw.animateArray());
