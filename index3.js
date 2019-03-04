@@ -76,7 +76,7 @@ class SortAndDraw  {
                 [this.arr[this.listOfIndexes[0]], this.arr[this.listOfIndexes[1]]] = [this.arr[this.listOfIndexes[1]], this.arr[this.listOfIndexes[0]]];
                 this.listOfIndexes.shift(this.listOfIndexes[0]);
                 this.listOfIndexes.shift(this.listOfIndexes[1]);
-                return this.arr;
+                return this.drawArray(this.arr);
                 //return this.arr;
             }
         }
@@ -143,6 +143,8 @@ class SortAndDraw  {
 
 
     animateArray() {
+        alert(this.changeColumns.first);
+        alert(this.changeColumns.second);
         let firstCollCoordinate = document.getElementById(this.changeColumns.first).offsetLeft;
         let secondCollCoordinate = document.getElementById(this.changeColumns.second).offsetLeft;
         alert(firstCollCoordinate);
@@ -197,7 +199,7 @@ increase.addEventListener('click',() => sortAndDraw.drawArray(sortAndDraw.increa
 
 
 let decrease = document.getElementById('dec');
-decrease.addEventListener('click', () => sortAndDraw.backSort().animateArray());
+decrease.addEventListener('click', () => sortAndDraw.backSort());
 
 let ob = document.getElementById('ob');
 ob.addEventListener('click', () => sortAndDraw.animateArray());

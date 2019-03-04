@@ -20,19 +20,22 @@ const drawArray = (arr) => {
         newDiv.style.display = 'block';
     }
 
-    // let id1 = arr[0];
-    // let id3 = arr[1];
-    // alert(id1);
-    // alert(id3);
-    // let first = document.getElementById(id1).offsetWidth;
-    // let second = document.getElementById(id3).offsetWidth;
-    // alert(first);
-    // alert(second);
-    // let first1 = document.getElementById(id1);
-    // let second2 = document.getElementById(id3);
-    //
-    // second2.style.right = first + 20 + 'px';
-    // first1.style.right = -second - 20 + 'px';
+    let id1 = arr[0];
+    let id3 = arr[1];
+    alert(id1);
+    alert(id3);
+    let first = document.getElementById(id1).offsetWidth;
+    let second = document.getElementById(id3).offsetWidth;
+    alert(first);
+    alert(second);
+    let first1 = document.getElementById(id1);
+    let second2 = document.getElementById(id3);
+
+    second2.style.right = first + 20 + 'px';
+    first1.style.right = -second - 20 + 'px';
+
+
+   
 
 }
 
@@ -77,7 +80,7 @@ const animArray = (arr) => {
 
 const f = () => {
     let arr = [6,1,2,9,3];
-    let d = drawArray(arr).animArray();
+    let d = drawArray(arr);
     // let r = animArray(d);
 }
 
