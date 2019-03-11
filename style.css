@@ -43,7 +43,7 @@
     font-size: 90%;
     margin-top: 35px;
     margin-right: 20px;
-    transition: right 5s cubic-bezier(0, 0, 1, 1);
+    transition: right 0.5s cubic-bezier(0, 0, 1, 1);
 
 
 }
