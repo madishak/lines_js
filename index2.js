@@ -1,148 +1,150 @@
+class SortAndDraw  {
+    constructor(numberString) {
+        this.arr = numberString.split("").map(element => Number(element));
+        this.listOfIndexes = [];
+        this.changeColumns = {};
+        this.newArr = [];
+        this.currentArr = 0;
 
-function sortAndDraw (r) {
-    this.nums = r;
-    this.arr;
-    this.l = [];
-    // this.pointer;
-    this.newDiv;
-    this.container;
-
-    //
-    this.gArray = function () {
-
-        this.arr = this.nums.split("").map(element => Number(element));
-        return this.arr;
 
     }
 
-    this.show = function () {
-       return this.gArray();
-        // return alert(this.gArray());
+    increaseSort() {
+        // this.newArr = [this.arr, ...this.newArr];
+        this.newArr.push(this.arr);
+        let pointer = 1;
 
-    }
-    this.increaseSort = function () {
-            for (let i = 0; i < this.arr.length - 1; i++) {
-                for (let j = i + 1; j < this.arr.length; j++) {
-                    if (this.arr[i] > this.arr[j]) {
-                        [this.arr[i], this.arr[j]] = [this.arr[j], this.arr[i]];
-                        this.l = [i, j, ...this.l];
-                        // this.pointer = this.pointer + 1;
-                        return this.arr;
-                        // alert(this.l);
-                    }
+        while (pointer) {
+            pointer = 0;
+
+            for (let i = 0; i < this.arr.length; i++) {
+
+                if (this.arr[i] > this.arr[i + 1]) {
+                    this.changeColumns.first = this.arr[i];
+                    this.changeColumns.second = this.arr[i+1];
+
+                    [this.arr[i], this.arr[i + 1]] = [this.arr[i + 1], this.arr[i]];
+                    this.listOfIndexes = [i, i + 1, ...this.listOfIndexes];
+
+                    pointer = 1;
+                    return this.arr;
                 }
             }
-
-        // while (!this.pointer) {
-        // for (let i = 0; i < this.arr.length ; i++) {
-        //
-        //         if (this.arr[i] > this.arr[i+1]) {
-        //
-        //             let temp = this.arr[i];
-        //             this.arr[i] = this.arr[i+1];
-        //             this.arr[i+1] = temp;
-        //             this.l = [i, i+1, ...this.l];
-        //             // this.pointer = this.pointer + 1;
-        //             return this.arr;
-        //             // alert(this.l);
-        //         }
-        //     }
-        //
-        // }
+        }
     }
 
-    this.backSort = function () {
+
+    put() {
+        // let newArr3 = [];
+        // let arr = this.increaseSort();
+        // this.newArr = [arr, ...this.newArr];
+        // newArr3 = [this.increaseSort(), newArr3];
+        // return alert(this.newArr);
+
+        //
+        // this.arrArr = [this.newArr, ...this.arrArr];
+        alert(this.newArr);
+
+    }
+
+    backSort() {
         for (let i = 0; i < this.arr.length; i++)
         {
-            if (this.l.length != 0) {
-                [this.arr[this.l[0]], this.arr[this.l[1]]] = [this.arr[this.l[1]], this.arr[this.l[0]]];
-                this.l.shift(this.l[0]);
-                this.l.shift(this.l[1]);
-                return this.drawArray(this.arr);
+            if (this.listOfIndexes.length != 0) {
+                [this.arr[this.listOfIndexes[0]], this.arr[this.listOfIndexes[1]]] = [this.arr[this.listOfIndexes[1]], this.arr[this.listOfIndexes[0]]];
+                this.changeColumns.first = this.arr[this.listOfIndexes[0]];
+                this.changeColumns.second = this.arr[this.listOfIndexes[1]];
+                this.listOfIndexes.shift(this.listOfIndexes[0]);
+                this.listOfIndexes.shift(this.listOfIndexes[1]);
+                return this.arr;
             }
         }
-
-        ;
-    }
-
-    this.showL = function () {
-        return this.l;
     }
 
 
-    this.drawArray = function (arr) {
 
-        this.container = document.createElement('div');
-        this.container.className = "line__inner";
-        document.body.appendChild(this.container);
-        for (let i = 0; i < arr.length; i++) {
 
-            this.newDiv = document.createElement('div');
-            this.newDiv.innerHTML = arr[i];
-            this.newDiv.id = arr[i];
-            this.newDiv.className = "line";
-            this.container.appendChild(this.newDiv);
-            this.newDiv.style.height = 15 * arr[i]+'px';
-            this.newDiv.style.display = 'block';
+
+    drawArray() {
+        let container = document.createElement('div');
+        container.className = "line__inner";
+        document.body.appendChild(container);
+        for (let i = 0; i < this.arr.length; i++) {
+
+            let newDiv = document.createElement('div');
+            newDiv.innerHTML = this.arr[i];
+            newDiv.id = this.arr[i];
+            newDiv.className = "line";
+            container.appendChild(newDiv);
+            newDiv.style.height = 15 * this.arr[i]+'px';
+            newDiv.style.display = 'block';
         }
 
-        return this.newDiv;
     }
 
-    // this.drawArray = function () {
-    //
-    //     this.container = document.createElement('div');
-    //     this.container.className = "line__inner";
-    //     document.body.appendChild(this.container);
-    //     for (let i = 0; i < this.arr.length; i++) {
-    //
-    //         this.newDiv = document.createElement('div');
-    //         this.newDiv.innerHTML = this.arr[i];
-    //         this.newDiv.id = this.arr[i];
-    //         this.newDiv.className = "line";
-    //         this.container.appendChild(this.newDiv);
-    //         this.newDiv.style.height = 15 * this.arr[i]+'px';
-    //         this.newDiv.style.display = 'block';
-    //     }
-    //
-    //     return this.newDiv;
-    // }
+
+    animateArray() {
+        let firstWidth = document.getElementById(this.changeColumns.first).offsetWidth;
+        let secondWidth = document.getElementById(this.changeColumns.second).offsetWidth;
+        let firstColl = document.getElementById(this.changeColumns.first);
+        let secondColl = document.getElementById(this.changeColumns.second);
+        firstColl.style.right = firstWidth + 20 + 'px';
+        secondColl.style.right = -secondWidth - 20 + 'px';
+    }
+
+    anArray() {
+        let firstWidth = document.getElementById(this.changeColumns.first).offsetWidth;
+        let secondWidth = document.getElementById(this.changeColumns.second).offsetWidth;
+        let firstColl = document.getElementById(this.changeColumns.first);
+        let secondColl = document.getElementById(this.changeColumns.second);
+        firstColl.style.right = secondWidth - 40 + 'px';
+        secondColl.style.right = -firstWidth + 40 + 'px';
+    }
+
+    animArray() {
+        // let firstWidth = document.getElementById(this.changeColumns.first).offsetWidth;
+        // let secondWidth = document.getElementById(this.changeColumns.second).offsetWidth;
+        let firstColl = document.getElementById(this.changeColumns.first);
+        let secondColl = document.getElementById(this.changeColumns.second);
+        firstColl.className = 'line' + 'move_right';
+        secondColl.className = 'line' + 'move_left';
+        firstColl.style.right = 20 + 'px';
+        secondColl.style.left = 20 + 'px';
+        // for (let i = 0; i < this.arr.length; i++) {
+        //     if (this.arr[i] == this.changeColumns.first) {
+        //         firstColl.style.right = this.arr[i] + 7 + 20 + 'px';
+        //     }
+        //     if (this.arr[i] == this.changeColumns.second) {
+        //         secondColl.style.right = this.arr[i] - 7 - 20 + 'px';
+        //     }
+        //     // firstColl.style.right = this.arr[i] + 7 + 20 + 'px';
+        //     //secondColl.style.right = this.arr[i-1] - 7 - 20 + 'px';
+        // }
+
+        //secondColl.style.right = -secondWidth - 20 + 'px';
+    }
+
+
 }
 
 
 
+let inputValue = document.getElementById('input').value;
 
-let t = document.getElementById('input').value;
+let sortAndDraw = new SortAndDraw(inputValue);
 
-let f = new sortAndDraw(t);
+let inputShow = document.getElementById('input');
+inputShow.addEventListener('change', () => sortAndDraw.drawArray());
 
-// let t = f.getArray();
-// f.drawArray(t);
-// const showInputArray = () => {
-//
-//     return alert(sortAndDraw.getArray());
-//
-// }
-
-
-let inputValue = document.getElementById('input');
-inputValue.onchange = function () {
-    f.show();
-
-};
 
 let increase = document.getElementById('inc');
-increase.onclick = function () {
-    return alert(f.increaseSort());
-};
+increase.addEventListener('click',() => sortAndDraw.anArray(sortAndDraw.increaseSort()));
+
 
 let decrease = document.getElementById('dec');
-decrease.onclick = function () {
-    return alert(f.backSort());
-};
+decrease.addEventListener('click', () => sortAndDraw.drawArray(sortAndDraw.backSort()));
 
-let indexes = document.getElementById('indexes');
-indexes.onclick = function () {
-    // let r = f.showL();
-    return alert(f.showL());
-};
+
+let ob = document.getElementById('ob');
+ob.addEventListener('click', () => sortAndDraw.put());
+
