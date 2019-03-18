@@ -1,19 +1,23 @@
+var arr = [8,12,9,6];
+
 class Test {
-    constructor() {
-        this.arr = [8,12,9,6];
-        this.storage = [0];
+    constructor(tarr) {
+        this.arr = [...tarr];
+        this.storage = [...this.arr];
         this.current = 0;
     }
 
     backSort() {
         this.current = this.storage.pop(this.arr);
-        alert(this.current);
+        alert(this.storage);
         return this.current;
         // alert(this.arr);
     }
 
     incSort() {
-        this.storage.push(this.arr);
+        // this.storage.push(this.arr);
+        alert(this.arr);
+
         let pointer = 1;
 
         while (pointer) {
@@ -29,7 +33,8 @@ class Test {
 
 
                     pointer = 1;
-
+                    this.storage = [this.arr, ...this.storage];
+                    alert(this.arr);
                     return this.arr;
                 }
             }
@@ -45,6 +50,7 @@ class Test {
 
 
     drawArray() {
+        const gap = 15;
         let container = document.createElement('div');
         container.className = "line__inner";
         document.body.appendChild(container);
@@ -55,14 +61,14 @@ class Test {
             newDiv.id = this.arr[i];
             newDiv.className = "line";
             container.appendChild(newDiv);
-            newDiv.style.height = 15 * this.arr[i]+'px';
+            newDiv.style.height = gap * this.arr[i]+'px';
             newDiv.style.display = 'block';
         }
 
     }
 }
 
-let sortAndDraw = new Test();
+let sortAndDraw = new Test(arr);
 
 
 let increase = document.getElementById('inc');
