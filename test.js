@@ -2,6 +2,7 @@ class Test {
     constructor(list) {
         this.arr =  list;
         this.storage = [];
+        //this.arrSaver = [...this.arr];
 
     }
     decrease() {
@@ -9,18 +10,24 @@ class Test {
         return last;
     }
 
+
+
     increase()  {
 
-            this.storage = [this.arr, ...this.storage];
+            let t = this.arr;
+            this.storage = [t, ...this.storage];
 
             let flag = true;
             while (flag) {
                 flag = false;
-                for (let i = 0; i < this.arr.length; i++) {
-                    if (this.arr[i] > this.arr[i + 1]) {
-                        [this.arr[i], this.arr[i + 1]] = [this.arr[i + 1], this.arr[i]];
+
+                for (let i = 0; i < t.length; i++) {
+                    // let arrCopy = arrSaver;
+                    if (t[i] > t[i + 1]) {
+                        [t[i], t[i + 1]] = [t[i + 1], t[i]];
+                        t = [...this.arr];
                         flag = true;
-                        return this.arr;
+                        return t;
                     }
                 }
             }
@@ -35,8 +42,10 @@ class Test {
 
 }
 
+const a = [9,3,6,7,1,7];
 
-let t = new Test([9,3,6,7,1,7]);
+
+let t = new Test(a);
 
 console.log(t.increase());
 console.log(t.print());
@@ -61,5 +70,9 @@ console.log(t.print());
 console.log("=================");
 console.log(t.increase());
 console.log(t.print());
+
+
+
+
 
 
