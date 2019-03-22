@@ -74,6 +74,7 @@ class SortAndDraw  {
             newDiv.className = "line";
             container.appendChild(newDiv);
             newDiv.style.height = 15 * this.arr[i]+'px';
+            newDiv.style.left = i * 5 + 'px';
             newDiv.style.display = 'block';
         }
 
@@ -94,19 +95,18 @@ class SortAndDraw  {
         let secondWidth = document.getElementById(this.changeColumns.second).offsetWidth;
         let firstColl = document.getElementById(this.changeColumns.first);
         let secondColl = document.getElementById(this.changeColumns.second);
-        firstColl.style.right = secondWidth - 40 + 'px';
-        secondColl.style.right = -firstWidth + 40 + 'px';
+        firstColl.style.right =  -29 + 'px';
+        secondColl.style.right =  29 + 'px';
     }
 
     animArray() {
         // let firstWidth = document.getElementById(this.changeColumns.first).offsetWidth;
         // let secondWidth = document.getElementById(this.changeColumns.second).offsetWidth;
-        let firstColl = document.getElementById(this.changeColumns.first);
-        let secondColl = document.getElementById(this.changeColumns.second);
-        firstColl.className = 'line' + 'move_right';
-        secondColl.className = 'line' + 'move_left';
-        firstColl.style.right = 20 + 'px';
-        secondColl.style.left = 20 + 'px';
+        let line = document.getElementById("line");
+        for (let i = 0; i < this.arr.length; i++) {
+            this.arr[i].style.left = i * 20 + 'px';
+        }
+
         // for (let i = 0; i < this.arr.length; i++) {
         //     if (this.arr[i] == this.changeColumns.first) {
         //         firstColl.style.right = this.arr[i] + 7 + 20 + 'px';
@@ -135,7 +135,7 @@ inputShow.addEventListener('change', () => sortAndDraw.drawArray());
 
 
 let increase = document.getElementById('inc');
-increase.addEventListener('click',() => sortAndDraw.anArray(sortAndDraw.increaseSort()));
+increase.addEventListener('click',() => sortAndDraw.animArray(sortAndDraw.increaseSort()));
 
 
 let decrease = document.getElementById('dec');
