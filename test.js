@@ -43,17 +43,21 @@ class Test {
             for (let i = 0; i < firstArr.length; i++) {
                 indSaver.a1 = firstArr[i];
                 indSaver.a2 = firstArr[i + 1];
+
+
                 for (let j = 0; j < secondArr.length; j++) {
-                    if (firstArr[i] !== secondArr[j] && firstArr[i + 1] !== secondArr[j + 1]) {
+                    indSaver.b1 = secondArr[j];
+                    indSaver.b2 = secondArr[j + 1];
 
-                        indSaver.b1 = secondArr[j];
-                        indSaver.b2 = secondArr[j + 1];
-
-
+                    if (indSaver.a1 === indSaver.b2 && indSaver.a2 === indSaver.b1)  {
+                        return indSaver;
                     }
+
+
                 }
+
             }
-            console.log(indSaver);
+
 
         }
         else  {
@@ -63,7 +67,7 @@ class Test {
 
 }
 
-let a = "936717";
+let a = "936712";
 
 
 let t = new Test(a);

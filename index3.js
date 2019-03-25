@@ -3,6 +3,7 @@ class SortAndDraw {
         this.numsArr =  numberString.split("").map(element => Number(element));
         this.arr = this.numsArr.slice(0);
         this.storage = [];
+        this.indSaver = {};
 
     }
     decreaseSort() {
@@ -53,12 +54,39 @@ class SortAndDraw {
         return this.storage;
     }
 
-    anim() {
-        if (this.storage.length > 2) {
+    changeNums() {
+
+        if (this.storage.length > 1) {
             let firstArr  = this.storage[0];
             let secondArr = this.storage[1];
+            for (let i = 0; i < firstArr.length; i++) {
+                this.indSaver.a1 = firstArr[i];
+                this.indSaver.a2 = firstArr[i + 1];
+
+
+                for (let j = 0; j < secondArr.length; j++) {
+                    this.indSaver.b1 = secondArr[j];
+                    this.indSaver.b2 = secondArr[j + 1];
+
+                    if (this.indSaver.a1 === this.indSaver.b2 && this.indSaver.a2 === this.indSaver.b1)  {
+                        return this.indSaver;
+                    }
+
+
+                }
+
+            }
+
 
         }
+        else  {
+            return "Nothing";
+        }
+    }
+
+    anim() {
+        alert(this.indSaver.a1.style.left);
+        //[this.indSaver.a1.style.left, this.indSaver.b2.style.left] = [this.indSaver.a2.style.left, this.indSaver.b1.style.left];
     }
 
 }
@@ -73,11 +101,11 @@ inputShow.addEventListener('change', () => sortAndDraw.drawArray());
 
 
 let increase = document.getElementById('inc');
-increase.addEventListener('click',() => sortAndDraw.drawArray(sortAndDraw.increaseSort()));
+increase.addEventListener('click',() => sortAndDraw.anim(sortAndDraw.increaseSort()));
 
 
 let decrease = document.getElementById('dec');
-decrease.addEventListener('click', () => sortAndDraw.drawArray(sortAndDraw.decreaseSort()));
+decrease.addEventListener('click', () => sortAndDraw.anim(sortAndDraw.decreaseSort()));
 
 let ob = document.getElementById('ob');
 ob.addEventListener('click', () => alert(sortAndDraw.print()));
