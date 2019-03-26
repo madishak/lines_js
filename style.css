@@ -35,6 +35,7 @@
 .line {
     position: relative;
     right: 0;
+    /*left: 0;*/
     transition: right 3s cubic-bezier(0, 0, 1, 1);
     border: 1px solid yellow;
     background-color: rebeccapurple;
@@ -49,14 +50,14 @@
 
 }
 
-.move_left {
-    position: relative;
-    left: 0;
-    transition: left 3s cubic-bezier(0, 0, 1, 1);
-}
+/*.move_left {*/
+    /*position: relative;*/
+    /*left: 0;*/
+    /*transition: left 3s cubic-bezier(0, 0, 1, 1);*/
+/*}*/
 
-.move_right {
-    position: relative;
-    right: 0;
-    transition: right 3s cubic-bezier(0, 0, 1, 1);
-}
+/*.move_right {*/
+    /*position: relative;*/
+    /*right: 0;*/
+    /*transition: right 3s cubic-bezier(0, 0, 1, 1);*/
+/*}*/

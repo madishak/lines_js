@@ -84,8 +84,12 @@ class SortAndDraw  {
     animateArray() {
         let firstWidth = document.getElementById(this.changeColumns.first).offsetWidth;
         let secondWidth = document.getElementById(this.changeColumns.second).offsetWidth;
+        alert(firstWidth);
+        alert(secondWidth);
         let firstColl = document.getElementById(this.changeColumns.first);
         let secondColl = document.getElementById(this.changeColumns.second);
+        alert(firstColl);
+        alert(secondWidth);
         firstColl.style.right = firstWidth + 20 + 'px';
         secondColl.style.right = -secondWidth - 20 + 'px';
     }
@@ -135,7 +139,7 @@ inputShow.addEventListener('change', () => sortAndDraw.drawArray());
 
 
 let increase = document.getElementById('inc');
-increase.addEventListener('click',() => sortAndDraw.animArray(sortAndDraw.increaseSort()));
+increase.addEventListener('click',() => sortAndDraw.animateArray(sortAndDraw.increaseSort()));
 
 
 let decrease = document.getElementById('dec');
