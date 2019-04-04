@@ -40,7 +40,7 @@ class SortAndDraw {
 
             let newDiv = document.createElement('div');
             newDiv.innerHTML = this.arr[i];
-            newDiv.id = this.arr[i];
+            newDiv.id = i;
             newDiv.className = "line";
             container.appendChild(newDiv);
             newDiv.style.height = 15 * this.arr[i]+'px';
@@ -51,7 +51,8 @@ class SortAndDraw {
     }
 
     print() {
-        return this.storage;
+        // let i = 0;
+       console.log(typeof this.arr[i]);
     }
 
     changeNums() {
@@ -60,13 +61,13 @@ class SortAndDraw {
             let firstArr  = this.storage[0];
             let secondArr = this.storage[1];
             for (let i = 0; i < firstArr.length; i++) {
-                this.indSaver.a1 = firstArr.indexOf(firstArr[i]);
-                this.indSaver.a2 = firstArr.indexOf(firstArr[i + 1]);
+                this.indSaver.a1 = i;
+                this.indSaver.a2 = i + 1;
 
 
                 for (let j = 0; j < secondArr.length; j++) {
-                    this.indSaver.b1 = firstArr.indexOf(secondArr[j]);
-                    this.indSaver.b2 = firstArr.indexOf(secondArr[j + 1]);
+                    this.indSaver.b1 = j;
+                    this.indSaver.b2 = j + 1;
 
                     if (this.indSaver.a1 === this.indSaver.b2 && this.indSaver.a2 === this.indSaver.b1)  {
                         return this.indSaver;
@@ -90,8 +91,8 @@ class SortAndDraw {
         // alert(this.indSaver.b1);
         // alert(this.indSaver.b2);
         //
-        // let firstWidth = document.getElementById(this.indSaver.b1).offsetWidth;
-        // let secondWidth = document.getElementById(this.indSaver.b2).offsetWidth;
+        // let firstWidth = document.getElementById(this.indSaver.a1).offsetWidth;
+        // let secondWidth = document.getElementById(this.indSaver.a2).offsetWidth;
         // alert(firstWidth);
         // alert(secondWidth);
         // let firstColl = document.getElementById(this.indSaver.b1);
@@ -106,8 +107,8 @@ class SortAndDraw {
         for(let i = 0; i < n.length; i++) {
             //alert(typeof Number(n[i].id));
             //alert(typeof this.indSaver.b1);
-            n[this.indSaver.a2].style.right = i * 10 + 'px';
-            n[this.indSaver.a1].style.right = -i * 5 + 'px';
+            n[this.indSaver.a2].style.right = i * 7 + 'px';
+            n[this.indSaver.a1].style.right = -i * 7 + 'px';
             //[n[this.indSaver.a2].style.right, n[this.indSaver.a1].style.right] = [n[this.indSaver.a1].style.right, n[this.indSaver.a2].style.right]
             // if (i === this.indSaver.a2 && i+1 === this.indSaver.a1) {
             //     n[i].style.right = i * 10 + 'px';
@@ -117,8 +118,22 @@ class SortAndDraw {
         }
     }
 
-}
+    anime() {
+        const [...n] = document.getElementsByClassName('line');
+        let i = 0;
+        while (i < n.length) {
+            if (n[i].id === '6') {
+                n[i].style.right = i * 5 + 'px';
+                i++;
+            }
+        }
+        // for (let i = 0; i < n.length; i++) {
+        //     n[i].style.right = i * 5 + 'px';
+        // }
+    }
 
+}
+//
 let inputValue = document.getElementById('input').value;
 
 let sortAndDraw = new SortAndDraw(inputValue);
@@ -129,7 +144,7 @@ inputShow.addEventListener('change', () => sortAndDraw.drawArray());
 
 
 let increase = document.getElementById('inc');
-increase.addEventListener('click',() => sortAndDraw.anim(sortAndDraw.changeNums(sortAndDraw.increaseSort())));
+increase.addEventListener('click',() => sortAndDraw.anime(sortAndDraw.changeNums(sortAndDraw.increaseSort())));
 
 
 let decrease = document.getElementById('dec');

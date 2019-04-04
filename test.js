@@ -42,13 +42,19 @@ class Test {
             let firstArr  = this.storage[0];
             let secondArr = this.storage[1];
             for (let i = 0; i < firstArr.length; i++) {
-                indSaver.a1 = firstArr.indexOf(firstArr[i]);
-                indSaver.a2 = firstArr.indexOf(firstArr[i + 1]);
+                // indSaver.a1 = firstArr.indexOf(firstArr[i]);
+                // indSaver.a2 = firstArr.indexOf(firstArr[i + 1]);
+                //[firstArr[i], firstArr[i+1]] = [indSaver.a1, indSaver.a2];
+                indSaver.a1 = firstArr[i];
+                indSaver.a2 = firstArr[i+1];
 
 
                 for (let j = 0; j < secondArr.length; j++) {
-                    indSaver.b1 = firstArr.indexOf(secondArr[j]);
-                    indSaver.b2 = firstArr.indexOf(secondArr[j + 1]);
+                    // indSaver.b1 = firstArr.indexOf(secondArr[j]);
+                    // indSaver.b2 = firstArr.indexOf(secondArr[j + 1]);
+                    //[secondArr[j], secondArr[j+1]] = [indSaver.b1, indSaver.b2];
+                    indSaver.b1 = secondArr[j];
+                    indSaver.b2 = secondArr[j+1];
 
                     if (indSaver.a1 === indSaver.b2 && indSaver.a2 === indSaver.b1)  {
                         return indSaver;
@@ -68,11 +74,15 @@ class Test {
 
 }
 
-let a = "936712";
+const a = "9369712";
 
 
 let t = new Test(a);
 
+console.log(t.increase());
+console.log(t.print());
+console.log(t.anim());
+console.log("=================");
 console.log(t.increase());
 console.log(t.print());
 console.log(t.anim());
