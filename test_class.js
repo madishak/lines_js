@@ -1,4 +1,4 @@
-var arr = [8,12,9,6];
+var arr = [8,12,9,6,2,9];
 
 class Test {
     constructor(tarArr) {
@@ -40,7 +40,7 @@ class Test {
 }
 
 var test = new Test(arr);
-
+console.log(test.arr);
 
 //     backSort() {
 //        this.current = this.storage.pop(this.arr);
