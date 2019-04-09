@@ -45,11 +45,16 @@ class Test {
                 indSaver.a1 = firstArr.indexOf(firstArr[i]);
                 indSaver.a2 = firstArr.indexOf(firstArr[i + 1]);
                 //[firstArr[i], firstArr[i+1]] = [indSaver.a1, indSaver.a2];
+                indSaver.ind = i;
+                indSaver.ind2 = i+1;
+
                 indSaver.a11 = firstArr[i];
                 indSaver.a22 = firstArr[i+1];
 
 
                 for (let j = 0; j < secondArr.length; j++) {
+                    indSaver.ind3 = j;
+                    indSaver.ind4 = j+1;
                     indSaver.b11 = secondArr[j];
                     indSaver.b22 = secondArr[j+1];
                     indSaver.b1 = firstArr.indexOf(secondArr[j]);
@@ -58,10 +63,12 @@ class Test {
 
 
                     if (indSaver.a1 === indSaver.b2 && indSaver.a2 === indSaver.b1)  {
-                        console.log(indSaver.a1);
-                        console.log(indSaver.a2);
-                        console.log(indSaver.b1);
-                        console.log(indSaver.b2);
+                        console.log(indSaver.ind);
+                        console.log(indSaver.ind2);
+                        console.log(indSaver.ind3);
+                        console.log(indSaver.ind4);
+
+
                         return indSaver;
                     }
 
@@ -79,7 +86,7 @@ class Test {
 
 }
 
-const a = "932971";
+const a = "999769";
 
 
 let t = new Test(a);

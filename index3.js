@@ -108,8 +108,8 @@ class SortAndDraw {
         for(let i = 0; i < this.arr.length; i++) {
             //alert(typeof Number(n[i].id));
             //alert(typeof this.indSaver.b1);
-            firstColl.style.left = i + 35 + 'px';
-            secondColl.style.left = i - 35 + 'px';
+            firstColl.style.left = i + 28 + 'px';
+            secondColl.style.left = i - 28 + 'px';
             //[n[this.indSaver.a2].style.right, n[this.indSaver.a1].style.right] = [n[this.indSaver.a1].style.right, n[this.indSaver.a2].style.right]
             // if (i === this.indSaver.a2 && i+1 === this.indSaver.a1) {
             //     n[i].style.right = i * 10 + 'px';
