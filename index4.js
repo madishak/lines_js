@@ -1,150 +1,176 @@
-class SortAndDraw  {
-    constructor(numbersString) {
-        this.nums = numbersString;
-        this.arr;
-        this.l = [];
-        // this.pointer;
-        this.changeColumns = {};
-        this.newDiv;
-        this.container;
-        this.firstColl;
-        this.secondColl;
-    }
-
-    getArray()  {
-        this.arr = this.nums.split("").map(element => Number(element));
-        return  this.arr;
+class Sort {
+    constructor(numberString) {
+        this.numsArr =  numberString.split("").map(element => Number(element));
+        this.arr = this.numsArr.slice(0);
+        this.storage = [this.numsArr];
+        this.indSaver = {};
 
     }
 
-    showArray() {
-        return this.drawArray(this.getArray());
+    performArray(){
+        return this.arr;
     }
 
-    increaseSort() {
-        for (let i = 0; i < this.arr.length - 1; i++) {
-            for (let j = i + 1; j < this.arr.length; j++) {
-                if (this.arr[i] > this.arr[j]) {
-                    [this.arr[i], this.arr[j]] = [this.arr[j], this.arr[i]];
-                    this.changeColumns.first = this.arr[i];
-                    this.changeColumns.second = this.arr[j];
-                    this.l = [i, j, ...this.l];
-                    // this.pointer = this.pointer + 1;
-                    return this.drawArray(this.arr);
-                    // alert(this.l);
+
+    decreaseSort() {
+        alert(this.storage);
+        this.arr = this.storage.shift();
+
+        return this.arr;
+    }
+
+
+
+    increaseSort()  {
+        alert(this.storage);
+        let flag = true;
+        while (flag) {
+            flag = false;
+            for (let i = 0; i < this.arr.length; i++) {
+                if (this.arr[i] > this.arr[i + 1]) {
+                    [this.arr[i], this.arr[i + 1]] = [this.arr[i + 1], this.arr[i]];
+                    this.storage = [this.arr.slice(0), ...this.storage];
+                    flag = true;
+                    return this.arr;
                 }
             }
         }
 
-        // while (!this.pointer) {
-        // for (let i = 0; i < this.arr.length ; i++) {
-        //
-        //         if (this.arr[i] > this.arr[i+1]) {
-        //
-        //             let temp = this.arr[i];
-        //             this.arr[i] = this.arr[i+1];
-        //             this.arr[i+1] = temp;
-        //             this.l = [i, i+1, ...this.l];
-        //             // this.pointer = this.pointer + 1;
-        //             return this.drawArray(this.arr);
-        //             // alert(this.l);
-        //         }
-        //     }
-        //
-        // }
+
     }
 
-    backSort()  {
-        for (let i = 0; i < this.arr.length; i++)
-        {
-            if (this.l.length != 0) {
-                [this.arr[this.l[0]], this.arr[this.l[1]]] = [this.arr[this.l[1]], this.arr[this.l[0]]];
-                this.l.shift(this.l[0]);
-                this.l.shift(this.l[1]);
-                return this.drawArray(this.arr);
+
+
+
+    print() {
+        // let i = 0;
+        alert(this.storage);
+    }
+
+    changeNums() {
+
+        if (this.storage.length > 1) {
+            let firstArr  = this.storage[0];
+            let secondArr = this.storage[1];
+            for (let i = 0; i < firstArr.length; i++) {
+                this.indSaver.a1 = firstArr[i];
+                this.indSaver.a2 = firstArr[i+1];
+
+
+
+                for (let j = 0; j < secondArr.length; j++) {
+                    this.indSaver.b1 = secondArr[j];
+                    this.indSaver.b2 = secondArr[j+1];
+
+                    if (this.indSaver.a1 === this.indSaver.b2 && this.indSaver.a2 === this.indSaver.b1)  {
+                        return this.indSaver;
+                    }
+
+
+                }
+
             }
+
+
         }
-
-
-    }
-
-    rowOfIndexes() {
-        return this.l;
-    }
-
-
-    drawArray(arr) {
-
-        this.container = document.createElement('div');
-        this.container.className = "line__inner";
-        document.body.appendChild(this.container);
-        for (let i = 0; i < arr.length; i++) {
-
-            this.newDiv = document.createElement('div');
-            this.newDiv.innerHTML = arr[i];
-            this.newDiv.id = arr[i];
-            this.newDiv.className = "line";
-            this.container.appendChild(this.newDiv);
-            this.newDiv.style.height = 15 * arr[i]+'px';
-            this.newDiv.style.display = 'block';
+        else  {
+            return "Nothing";
         }
-        document.body.insertBefore(this.container, h1);
-
-
-        return this.newDiv;
     }
 
-    anArray() {
-        this.firstColl = document.getElementById(this.changeColumns.first).offsetLeft;
-        this.secondColl = document.getElementById(this.changeColumns.second).offsetLeft;
-        // alert(firstCol);
-        // alert(secondCol);
-        [this.firstColl, this.secondColl] = [this.secondColl, this.firstColl];
-        // alert(firstCol);
-        // alert(secondCol);
-        document.getElementById(this.changeColumns.first).style.left = this.secondColl + 'px';
-        // for (let i = 0; i < this.arr.length; i++) {
-        //     if (this.arr[i] == this.changeColumns.first) {
-        //         alert("yes");
-        //         alert(document.getElementById(this.changeColumns.first).offsetLeft);
-        //         alert(document.getElementById(this.changeColumns.second).offsetLeft);
-        //         alert(this.changeColumns.first);
-        //         alert(this.changeColumns.second);
+    anim() {
+        // this.changeNums();
+        // alert("tuk");
+        // alert(this.indSaver.b1);
+        // alert(this.indSaver.b2);
+        //
+        // let firstWidth = document.getElementById(this.indSaver.a1).offsetWidth;
+        // let secondWidth = document.getElementById(this.indSaver.a2).offsetWidth;
+        // alert(firstWidth);
+        // alert(secondWidth);
+        let firstColl = document.getElementById(this.indSaver.a2);
+        let secondColl = document.getElementById(this.indSaver.a1);
+        // // alert(firstColl);
+        // // alert(secondColl);
+        // firstColl.style.right = -firstWidth - 20 + 'px';
+        // secondColl.style.right = secondWidth + 20 + 'px';
+        // alert("Madina");
+        const [...n] = document.getElementsByClassName('line');
+
+        for(let i = 0; i < this.arr.length; i++) {
+            //alert(typeof Number(n[i].id));
+            //alert(typeof this.indSaver.b1);
+            firstColl.style.left = i + 28 + 'px';
+            secondColl.style.left = i - 28 + 'px';
+            //[n[this.indSaver.a2].style.right, n[this.indSaver.a1].style.right] = [n[this.indSaver.a1].style.right, n[this.indSaver.a2].style.right]
+            // if (i === this.indSaver.a2 && i+1 === this.indSaver.a1) {
+            //     n[i].style.right = i * 10 + 'px';
+            //     n[i+1].style.right = i * 10 + 'px';
+            // }
+
+        }
+    }
+
+    anime() {
+        const [...n] = document.getElementsByClassName('line');
+        let i = 0;
+        alert(n[this.indSaver.a2]);
+        // while (i < n.length) {
+        //     if (n[i].id === "1") {
+        //         n[i].style.background = 'red';
+        //         i++;
         //     }
-        //     alert("no");
         // }
-
-        //return (this.changeColumns.first + '*' + this.changeColumns.second);
-        // return alert('Madina');
-
+        // for (let i = 0; i < n.length; i++) {
+        //     n[i].style.right = i * 5 + 'px';
+        // }
     }
 
 }
 
+class Draw {
+    constructor(sequence) {
+        this.arr = sequence;
 
+    }
 
+    drawArray() {
+        let container = document.createElement('div');
+        container.className = "line__inner";
+        document.body.appendChild(container);
+        for (let i = 0; i < this.arr.length; i++) {
+
+            let newDiv = document.createElement('div');
+            newDiv.innerHTML = this.arr[i];
+            newDiv.id = this.arr[i];
+            newDiv.className = "line";
+            container.appendChild(newDiv);
+            newDiv.style.height = 15 * this.arr[i]+'px';
+            //newDiv.style.right = i * 5 + 'px';
+            newDiv.style.display = 'block';
+        }
+
+    }
+}
 
 let inputValue = document.getElementById('input').value;
 
-let sortAndDraw = new SortAndDraw(input.value);
+let sort = new Sort(inputValue);
 
+let draw = new Draw(sort.performArray());
 
 let inputShow = document.getElementById('input');
-inputShow.addEventListener('change', () => sortAndDraw.showArray());
+inputShow.addEventListener('change', () => draw.drawArray());
 
 
 let increase = document.getElementById('inc');
-increase.addEventListener('click',() => sortAndDraw.increaseSort());
+increase.addEventListener('click',() => draw.drawArray(sort.increaseSort()));
+
 
 
 let decrease = document.getElementById('dec');
-decrease.addEventListener('click', () => sortAndDraw.backSort());
-
+decrease.addEventListener('click', () => draw.drawArray(sort.decreaseSort()));
 
 let ob = document.getElementById('ob');
-ob.addEventListener('click', () => sortAndDraw.anArray());
-
-
-let indexes = document.getElementById('indexes');
-indexes.addEventListener('click', () => sortAndDraw.rowOfIndexes());
+ob.addEventListener('click', () => sort.print());
 
