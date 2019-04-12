@@ -24,6 +24,7 @@ class Sort {
                 this.changeColumns.second = this.arr[this.listOfIndexes[1]];
                 this.listOfIndexes.shift(this.listOfIndexes[0]);
                 this.listOfIndexes.shift(this.listOfIndexes[1]);
+                alert(this.listOfIndexes);
                 return this.arr;
             }
         }
@@ -32,6 +33,7 @@ class Sort {
 
 
     increaseSort() {
+        alert(this.listOfIndexes);
         let pointer = 1;
 
         while (pointer) {
@@ -75,6 +77,7 @@ class Draw {
     drawArray() {
         let container = document.createElement('div');
         container.className = "line__inner";
+        container.id = "line__inner";
         document.body.appendChild(container);
         for (let i = 0; i < this.arr.length; i++) {
 
@@ -91,10 +94,13 @@ class Draw {
     }
 
     movement() {
-        [...elems] = document.getElementsByClassName('line');
-        for (let i =0; i < this.arr; i++){
-            for (let j =0; j < this.listOfIndexes; j++) {
-                this.arr[this.listOfIndexes[j]].style.left = i * 5 + 'px';
+       // [...elems] = document.getElementsByClassName('line');
+        let elems = documents.getElementById('line__inner').children;
+        alert(elems.length);
+        for (let i =0; i < this.arr.length; i++){
+            for (let j =0; j < this.listOfIndexes.length; j++) {
+                this.arr[this.listOfIndexes[j]].style.background = 'red';
+                //this.arr[this.listOfIndexes[j]].style.left = i * 5 + 'px';
             }
         }
     }
