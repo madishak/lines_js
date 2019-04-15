@@ -17,43 +17,30 @@ class Sort {
 
 
     decreaseSort() {
-        for (let i = 0; i < this.arr.length; i++)
-        {
-            if (this.listOfIndexes.length != 0) {
-                [this.arr[this.listOfIndexes[0]], this.arr[this.listOfIndexes[1]]] = [this.arr[this.listOfIndexes[1]], this.arr[this.listOfIndexes[0]]];
-                this.changeColumns.first = this.arr[this.listOfIndexes[0]];
-                this.changeColumns.second = this.arr[this.listOfIndexes[1]];
-                this.listOfIndexes.shift(this.listOfIndexes[0]);
-                this.listOfIndexes.shift(this.listOfIndexes[1]);
-                alert(this.listOfIndexes);
-                return this.arr;
-            }
-        }
+        this.arr = this.storage.shift();
+        alert(this.arr);
+        return this.arr;
     }
 
 
 
-    increaseSort() {
-        alert(this.listOfIndexes);
-        let pointer = 1;
+    increaseSort()  {
 
-        while (pointer) {
-            pointer = 0;
-
+        let flag = true;
+        while (flag) {
+            flag = false;
             for (let i = 0; i < this.arr.length; i++) {
-
                 if (this.arr[i] > this.arr[i + 1]) {
-                    this.changeColumns.first = this.arr[i];
-                    this.changeColumns.second = this.arr[i+1];
-                    this.newArr = [this.arr, ...this.newArr];
                     [this.arr[i], this.arr[i + 1]] = [this.arr[i + 1], this.arr[i]];
-                    this.listOfIndexes = [i, i + 1, ...this.listOfIndexes];
-
-                    pointer = 1;
+                    this.storage = [this.arr.slice(0), ...this.storage];
+                    flag = true;
+                    alert(this.arr);
                     return this.arr;
                 }
             }
         }
+
+
     }
 
 
@@ -98,27 +85,27 @@ class Draw {
 
     movement() {
         alert("Indexes"+this.listOfIndexes);
-       // [...elems] = document.getElementsByClassName('line');
+        // [...elems] = document.getElementsByClassName('line');
         //let elems = documents.getElementById('line__inner').children;
         //alert(elems.length);
         for (let i =0; i < this.arr.length; i++){
             for (let j =0; j < this.listOfIndexes.length; j++) {
-                this.arr[this.listOfIndexes[j]].style.left = i * 5 + 'px';
+                // this.arr[this.listOfIndexes[j]].style.left = i * 5 + 'px';
                 //this.arr[this.listOfIndexes[j]].style.left = i * 5 + 'px';
             }
         }
     }
 
     print() {
-
+        alert(this.listOfIndexes)
     }
 }
 
 let inputValue = document.getElementById('input').value;
 
 let sort = new Sort(inputValue);
-
-let draw = new Draw(sort.newArr);
+alert(sort.storage);
+let draw = new Draw(sort.storage);
 
 let inputShow = document.getElementById('input');
 inputShow.addEventListener('change', () => draw.drawArray());

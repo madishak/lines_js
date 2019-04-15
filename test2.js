@@ -1,39 +1,86 @@
-function  sum(arr) {
-    this.value = arr;
-    this.newArr = [];
-    this.newV = 0;
-    this.s = function () {
-        this.newV += this.value.reduce((elem, acc) => elem+acc,0);
-        return +this.newV;
-    }
-    this.ad = function (x) {
-        this.newV  = this.newV + x;
-        return this.newV ;
+class Sort {
+    constructor(numberString) {
+        this.numsArr =  numberString.split("").map(element => Number(element));
+        this.arr = this.numsArr.slice(0);
+        this.storage = [this.numsArr];
+        this.indSaver = {};
+        this.listOfIndexes = [];
+        this.changeColumns = {};
+        this.newArr = this.listOfIndexes.slice(0);
+
 
     }
-    this.minus = function (x) {
-        this.newV  = this.newV - x;
-        return this.newV ;
+
+    performArray(){
+        return this.arr;
+    }
+
+
+    decreaseSort() {
+        this.arr = this.storage.shift();
+        return this.arr;
+    }
+
+
+
+    increaseSort()  {
+
+        let flag = true;
+        while (flag) {
+            flag = false;
+            for (let i = 0; i < this.arr.length; i++) {
+                if (this.arr[i] > this.arr[i + 1]) {
+                    [this.arr[i], this.arr[i + 1]] = [this.arr[i + 1], this.arr[i]];
+                    this.storage = [this.arr.slice(0), ...this.storage];
+                    flag = true;
+                    return this.arr;
+                }
+            }
+        }
+
 
     }
+
+
+
+
 
 }
 
-var d = new sum([2,9,5,7]); //вызвала конструктор
-alert(d.s()); //вывод того что получилось в this.s
-d.ad(3); // прибавляю к this.s переданное значение в this.ad
-alert(d.ad(1)); //прибавляю к this.s переданное значение в this.ad (acc)
+class Draw {
+    constructor(sequence) {
+        this.listOfIndexes = sequence;
+       // this.inputValue = document.getElementById('input').value.split("").map(element => Number(element));
+        //this.arr = this.inputValue.slice(0);
+
+    }
+
+    print() {
+        console.log(this.listOfIndexes);
+    }
 
 
-alert(d.ad(5));//прибавляю к this.s переданное значение в this.ad (acc)
+}
 
 
-let increase = document.getElementById('inc');
-increase.onclick = function () {
-    return alert(d.ad(2));
-};
+let sort = new Sort('379531');
+let draw = new Draw(sort.storage);
 
-let decrease = document.getElementById('dec');
-decrease.onclick = function () {
-    return alert(d.minus(2));
-};
+
+draw.print();
+draw.print();
+draw.print();
+draw.print();
+draw.print();
+draw.print(sort.increaseSort());
+draw.print(sort.increaseSort());
+// draw.print(sort.increaseSort());
+//
+// console.log(sort.increaseSort());
+// console.log(sort.increaseSort());
+// console.log(sort.increaseSort());
+// console.log(sort.increaseSort());
+// console.log(sort.increaseSort());
+// console.log(sort.increaseSort());
+// console.log(sort.increaseSort());
+console.log(sort.storage);
