@@ -31,6 +31,7 @@ class Sort {
             for (let i = 0; i < this.arr.length; i++) {
                 if (this.arr[i] > this.arr[i + 1]) {
                     [this.arr[i], this.arr[i + 1]] = [this.arr[i + 1], this.arr[i]];
+                    this.listOfIndexes = [i, i + 1, ...this.listOfIndexes];
                     this.storage = [this.arr.slice(0), ...this.storage];
                     flag = true;
                     return this.arr;
@@ -50,37 +51,55 @@ class Sort {
 class Draw {
     constructor(sequence) {
         this.listOfIndexes = sequence;
+        this.storage = sequence;
        // this.inputValue = document.getElementById('input').value.split("").map(element => Number(element));
         //this.arr = this.inputValue.slice(0);
 
     }
 
     print() {
-        console.log(this.listOfIndexes);
+        console.log(this.storage);
     }
 
 
 }
 
 
-let sort = new Sort('379531');
-let draw = new Draw(sort.storage);
+let sort = new Sort('5124');
+// console.log(sort.storage);
+let draw = new Draw(sort.performArray());
 
 
+
+sort.increaseSort();
+console.log(sort.performArray());
 draw.print();
+console.log("=================");
+// console.log(sort.increaseSort());
+// console.log(sort.increaseSort());
+// console.log(sort.increaseSort());
+// console.log(sort.increaseSort());
+sort.increaseSort();
+console.log(sort.performArray());
 draw.print();
+console.log("=================");
+sort.increaseSort();
+console.log(sort.performArray());
 draw.print();
+console.log("=================");
+
+
+sort.decreaseSort();
+console.log(sort.performArray());
 draw.print();
+console.log("=================");
+
+sort.decreaseSort();
+console.log(sort.performArray());
 draw.print();
-draw.print(sort.increaseSort());
-draw.print(sort.increaseSort());
-// draw.print(sort.increaseSort());
-//
-// console.log(sort.increaseSort());
-// console.log(sort.increaseSort());
-// console.log(sort.increaseSort());
-// console.log(sort.increaseSort());
-// console.log(sort.increaseSort());
-// console.log(sort.increaseSort());
-// console.log(sort.increaseSort());
-console.log(sort.storage);
+console.log("=================");
+
+sort.decreaseSort();
+console.log(sort.performArray());
+draw.print();
+console.log("=================");
