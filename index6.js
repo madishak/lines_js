@@ -7,25 +7,33 @@ class Sort {
         this.listOfIndexes = [];
         this.changeColumns = {};
         this.newArr = this.listOfIndexes.slice(0);
+        this.struct = {"arr": this.arr}
 
 
     }
 
     performArray(){
-        alert(this.arr);
-        return this.arr;
+        // alert(this.arr);
+
+
+        return this.struct;
     }
 
 
     decreaseSort() {
         for (let i = 0; i < this.arr.length; i++)
         {
-            if (this.listOfIndexes.length != 0) {
+            if (this.listOfIndexes.length !== 0) {
                 [this.arr[this.listOfIndexes[0]], this.arr[this.listOfIndexes[1]]] = [this.arr[this.listOfIndexes[1]], this.arr[this.listOfIndexes[0]]];
                 this.changeColumns.first = this.arr[this.listOfIndexes[0]];
                 this.changeColumns.second = this.arr[this.listOfIndexes[1]];
                 this.listOfIndexes.shift(this.listOfIndexes[0]);
                 this.listOfIndexes.shift(this.listOfIndexes[1]);
+
+                this.struct.indexes = this.listOfIndexes;
+                this.struct.arr = this.arr;
+
+
                 return this.arr;
             }
         }
@@ -45,6 +53,11 @@ class Sort {
                     this.listOfIndexes = [i, i + 1, ...this.listOfIndexes];
                     flag = true;
                     alert(this.arr);
+
+                    this.struct.indexes = this.listOfIndexes;
+                    this.struct.arr = this.arr;
+
+
                     return this.arr;
                 }
             }
@@ -56,8 +69,9 @@ class Sort {
 
 
     print() {
-        // let i = 0;
-        alert(this.storage);
+
+
+        return this.struct;
     }
 
 
@@ -68,21 +82,20 @@ class Sort {
 
 class Draw {
     constructor(sequence) {
-        this.listOfIndexes = sequence;
-        this.inputValue = document.getElementById('input').value.split("").map(element => Number(element));
-
-        this.arr = this.listOfIndexes;
-        this.storage = [this.listOfIndexes];
+        this.arrayAndIndexes = sequence;
+        this.arr = this.arrayAndIndexes.arr;
+        this.storage = [this.arrayAndIndexes];
 
     }
 
     arrayKeeper(){
-        this.storage = [this.arr, this.inputValue, ...this.storage];
-        return this.storage;
+        // this.storage = [this.arr, this.inputValue, this.listOfIndexes, ...this.storage];
+        // return this.storage;
 
     }
 
     drawArray() {
+        alert(this.arrayAndIndexes.indexes);
         let container = document.createElement('div');
         container.className = "line__inner";
         container.id = "line__inner";
@@ -115,10 +128,11 @@ class Draw {
     }
 
     print() {
-        alert(this.listOfIndexes)
+        //alert(this.listOfIndexes)
     }
 
     comparisonOfArray() {
+       // alert(Object.keys(this.listOfIndexes))
 
     }
 }
@@ -126,7 +140,7 @@ class Draw {
 let inputValue = document.getElementById('input').value;
 
 let sort = new Sort(inputValue);
-// alert(sort.storage);
+
 let draw = new Draw(sort.performArray());
 
 let inputShow = document.getElementById('input');
@@ -142,5 +156,5 @@ let decrease = document.getElementById('dec');
 decrease.addEventListener('click', () => draw.drawArray(sort.decreaseSort()));
 
 let ob = document.getElementById('ob');
-ob.addEventListener('click', () => alert(draw.arrayKeeper()));
+ob.addEventListener('click', () => (draw.comparisonOfArray()));
 
