@@ -69,6 +69,8 @@ class Draw {
 
 
     drawArray() {
+        const fixedColumnHeight = 15;
+        const columnMargin = 5;
         let container = document.createElement('div');
         container.className = "line__inner";
         container.id = "line__inner";
@@ -80,8 +82,8 @@ class Draw {
             newDiv.id = this.arr[i];
             newDiv.className = "line";
             container.appendChild(newDiv);
-            newDiv.style.height = 15 * this.arr[i]+'px';
-            newDiv.style.left = i * 5 + 'px';
+            newDiv.style.height = fixedColumnHeight * this.arr[i]+'px';
+            newDiv.style.left = i * columnMargin + 'px';
             newDiv.style.display = 'block';
         }
 
@@ -92,21 +94,36 @@ class Draw {
 
         const [...columns] = document.getElementsByClassName('line');
 
-        const leftWidth = columns.reduce((arr, elem) => {
-            let leftValue = elem.style.left;
-           return [leftValue, ...arr];
-        }, []).reverse();
+        const leftWidth = columns.reduce((arr, elem) => [elem.style.left, ...arr], []).reverse();
 
+        let copyLeftWidth = leftWidth.slice(0);
+
+        // console.log(listOfIndexes);
+        // console.log(copyLeftWidth);
+        // console.log(leftWidth);
 
 
         for (let i = 0; i < columns.length; i++) {
-            for (let j = 0; j < listOfIndexes.length; j++) {
+            // for (let j = 0; j < listOfIndexes.length; j++) {
                 for (let k = 0; k < leftWidth.length; k++) {
-                    columns[listOfIndexes[0]].style.left = i * -5 + 'px';
-                    columns[listOfIndexes[1]].style.left = i * 5 + 'px';
-                }
+                    // if (listOfIndexes[j] === k) {
+                        // console.log(listOfIndexes[j]);
+                        // console.log(columns[listOfIndexes[j]]);
+                        // console.log(copyLeftWidth[k]);
+                        columns[listOfIndexes[0]].style.left = -34 + 'px';
+                        columns[listOfIndexes[1]].style.left = 34 + 'px';
+                        columns[listOfIndexes[2]].style.left = -34 + 'px';
+                        columns[listOfIndexes[3]].style.left = 34 + 'px';
+                       // columns[listOfIndexes[j]].style.left = copyLeftWidth[k+1];
+                    // }
+                // }
             }
         }
+
+
+       // for (let i = 0; i < columns.length; i++) {
+       //     columns[listOfIndexes[j]].style.left = copyLeftWidth[k];
+       // }
     }
 
 
