@@ -76,10 +76,15 @@ class Draw {
         alert(this.arrayAndIndexes.indexes);
         const fixedColumnHeight = 15;
         const columnMargin = 5;
+        // let mainInner = document.createElement('div');
+        // mainInner.className = "main__inner";
+        // mainInner.id = "main__inner";
+        // document.body.appendChild(mainInner);
         let container = document.createElement('div');
         container.className = "line__inner";
         container.id = "line__inner";
         document.body.appendChild(container);
+        // mainInner.appendChild(container);
         for (let i = 0; i < this.arr.length; i++) {
 
             let newDiv = document.createElement('div');
@@ -106,7 +111,12 @@ class Draw {
         return columns.forEach((elem, ind) => {
             const elemOffset = elem.offsetLeft;
             console.log(elemOffset);
-            const position = listOfIndexes.indexOf(ind);
+            const position = listOfIndexes[ind];
+            console.log(listOfIndexes[ind]);
+            // if (listOfIndexes[1] === ind) {
+            //     alert("madina");
+            // }
+
             return elem.style.left = position * elemOffset + 'px';
         })
 
