@@ -12,12 +12,12 @@ class Sort {
 
 
     decreaseSort() {
-        const incEveryIndex = this.listOfIndexes.reduce((acc, elem) => [elem+1, elem,...acc], []).reverse();
+        const incEveryIndex = this.listOfIndexes.reduce((acc, elem) => [elem, elem+1,...acc], []);
         console.log(incEveryIndex);
         for (let i = 0; i < this.arr.length; i++)
         {
             if (this.listOfIndexes.length !== 0) {
-                [this.arr[incEveryIndex[0]], this.arr[incEveryIndex[1]]] = [this.arr[incEveryIndex[1]], this.arr[incEveryIndex[0]]];
+                [this.arr[incEveryIndex[1]], this.arr[incEveryIndex[0]]] = [this.arr[incEveryIndex[0]], this.arr[incEveryIndex[1]]];
                 incEveryIndex.shift(incEveryIndex[0]);
                 incEveryIndex.shift(incEveryIndex[1]);
 
@@ -42,7 +42,8 @@ class Sort {
             for (let i = 0; i < this.arr.length; i++) {
                 if (this.arr[i] > this.arr[i + 1]) {
                     [this.arr[i], this.arr[i + 1]] = [this.arr[i + 1], this.arr[i]];
-                    this.listOfIndexes = [i, ...this.listOfIndexes];
+                    this.listOfIndexes = [...this.listOfIndexes, i, i+1];
+                    console.log(this.listOfIndexes);
                     flag = true;
 
                     this.struct.indexes = this.listOfIndexes;
@@ -73,18 +74,15 @@ class Draw {
 
 
     drawArray() {
-        alert(this.arrayAndIndexes.indexes);
+        //alert(this.arrayAndIndexes.indexes);
         const fixedColumnHeight = 15;
         const columnMargin = 5;
-        // let mainInner = document.createElement('div');
-        // mainInner.className = "main__inner";
-        // mainInner.id = "main__inner";
-        // document.body.appendChild(mainInner);
+
         let container = document.createElement('div');
         container.className = "line__inner";
         container.id = "line__inner";
         document.body.appendChild(container);
-        // mainInner.appendChild(container);
+
         for (let i = 0; i < this.arr.length; i++) {
 
             let newDiv = document.createElement('div');
@@ -104,21 +102,39 @@ class Draw {
 
         const [...columns] = document.getElementsByClassName('line'); //columns => HTML objects
 
+        return listOfIndexes.forEach((elem, i) => {
 
 
+            columns.forEach((col, ind) => {
+                const elemOffset = col.offsetLeft;
 
+                if (ind === elem) {
+                    console.log(ind, elem);
 
-        return columns.forEach((elem, ind) => {
-            const elemOffset = elem.offsetLeft;
-            console.log(elemOffset);
-            const position = listOfIndexes[ind];
-            console.log(listOfIndexes[ind]);
-            // if (listOfIndexes[1] === ind) {
-            //     alert("madina");
-            // }
-
-            return elem.style.left = position * elemOffset + 'px';
+                    alert(ind);
+                    let position = listOfIndexes[i];
+                    col.style.backgroundColor = 'red';
+                    return col.style.left = position  + 'px';
+                }
+            });
         })
+
+
+
+        // return columns.forEach((col, ind) => {
+        //     const elemOffset = col.offsetLeft;
+        //     console.log(elemOffset);
+        //
+        //     listOfIndexes.forEach((elem, i) => {
+        //         if (ind === elem) {
+        //
+        //             alert(ind);
+        //             let position = listOfIndexes[i];
+        //             col.style.backgroundColor = 'red';
+        //             return col.style.left = position + 'px';
+        //         }
+        //     });
+        // })
 
 
 
