@@ -12,16 +12,12 @@ class Sort {
 
 
     decreaseSort() {
-        const incEveryIndex = this.listOfIndexes.reduce((acc, elem) => [elem, elem+1,...acc], []);
-        console.log(incEveryIndex);
         for (let i = 0; i < this.arr.length; i++)
         {
             if (this.listOfIndexes.length !== 0) {
-                [this.arr[incEveryIndex[1]], this.arr[incEveryIndex[0]]] = [this.arr[incEveryIndex[0]], this.arr[incEveryIndex[1]]];
-                incEveryIndex.shift(incEveryIndex[0]);
-                incEveryIndex.shift(incEveryIndex[1]);
-
+                [this.arr[this.listOfIndexes[0]], this.arr[this.listOfIndexes[1]]] = [this.arr[this.listOfIndexes[1]], this.arr[this.listOfIndexes[0]]];
                 this.listOfIndexes.shift(this.listOfIndexes[0]);
+                this.listOfIndexes.shift(this.listOfIndexes[1]);
 
                 this.struct.indexes = this.listOfIndexes;
                 this.struct.arr = this.arr;
@@ -42,7 +38,7 @@ class Sort {
             for (let i = 0; i < this.arr.length; i++) {
                 if (this.arr[i] > this.arr[i + 1]) {
                     [this.arr[i], this.arr[i + 1]] = [this.arr[i + 1], this.arr[i]];
-                    this.listOfIndexes = [...this.listOfIndexes, i, i+1];
+                    this.listOfIndexes = [i, i+1,...this.listOfIndexes];
                     console.log(this.listOfIndexes);
                     flag = true;
 
@@ -91,8 +87,8 @@ class Draw {
             newDiv.className = "line";
             container.appendChild(newDiv);
             newDiv.style.height = fixedColumnHeight * this.arr[i]+'px';
-            newDiv.style.left = i * columnMargin + 'px';
-            newDiv.style.display = 'block';
+            //newDiv.style.left = i * columnMargin + 'px';
+            newDiv.style.display = 'inline-block';
         }
 
     }
@@ -106,15 +102,20 @@ class Draw {
 
 
             columns.forEach((col, ind) => {
-                const elemOffset = col.offsetLeft;
-
+                const elemOffset = col.offsetWidth;
+                //console.log(elemOffset);
+                let position;
                 if (ind === elem) {
                     console.log(ind, elem);
 
-                    alert(ind);
-                    let position = listOfIndexes[i];
+                    // alert(ind);
+                    position = elem;
                     col.style.backgroundColor = 'red';
-                    return col.style.left = position  + 'px';
+                    col.style.left = position + elemOffset + 'px';
+                }
+                else {
+                    col.style.backgroundColor = 'blue';
+
                 }
             });
         })
