@@ -1,19 +1,18 @@
 class Sort {
     constructor(numberString) {
-        this.numsArr =  numberString.split("").map(element => Number(element));
+        this.numsArr = numberString.split("").map(element => Number(element));
         this.arr = this.numsArr.slice(0);
         this.listOfIndexes = [];
         this.struct = {"arr": this.arr}
     }
 
-    arrayAndIndexes(){
+    arrayAndIndexes() {
         return this.struct;
     }
 
 
     decreaseSort() {
-        for (let i = 0; i < this.arr.length; i++)
-        {
+        for (let i = 0; i < this.arr.length; i++) {
             if (this.listOfIndexes.length !== 0) {
                 [this.arr[this.listOfIndexes[0]], this.arr[this.listOfIndexes[1]]] = [this.arr[this.listOfIndexes[1]], this.arr[this.listOfIndexes[0]]];
                 this.listOfIndexes.shift(this.listOfIndexes[0]);
@@ -29,8 +28,7 @@ class Sort {
     }
 
 
-
-    increaseSort()  {
+    increaseSort() {
 
         let flag = true;
         while (flag) {
@@ -38,7 +36,7 @@ class Sort {
             for (let i = 0; i < this.arr.length; i++) {
                 if (this.arr[i] > this.arr[i + 1]) {
                     [this.arr[i], this.arr[i + 1]] = [this.arr[i + 1], this.arr[i]];
-                    this.listOfIndexes = [i, i+1,...this.listOfIndexes];
+                    this.listOfIndexes = [i, i + 1, ...this.listOfIndexes];
                     console.log(this.listOfIndexes);
                     flag = true;
 
@@ -55,9 +53,6 @@ class Sort {
     }
 
 
-
-
-
 }
 
 class Draw {
@@ -66,7 +61,6 @@ class Draw {
         this.arr = this.arrayAndIndexes.arr;
 
     }
-
 
 
     drawArray() {
@@ -86,7 +80,7 @@ class Draw {
             newDiv.id = this.arr[i];
             newDiv.className = "line";
             container.appendChild(newDiv);
-            newDiv.style.height = fixedColumnHeight * this.arr[i]+'px';
+            newDiv.style.height = fixedColumnHeight * this.arr[i] + 'px';
             //newDiv.style.left = i * columnMargin + 'px';
             newDiv.style.display = 'inline-block';
         }
@@ -98,28 +92,42 @@ class Draw {
 
         const [...columns] = document.getElementsByClassName('line'); //columns => HTML objects
 
-        return listOfIndexes.forEach((elem, i) => {
+        let activeIndexes = {};
+
+        activeIndexes.first = listOfIndexes[0];
+        activeIndexes.second = listOfIndexes[1];
+
+        console.log(activeIndexes.first, activeIndexes.second);
 
 
-            columns.forEach((col, ind) => {
-                const elemOffset = col.offsetWidth;
-                //console.log(elemOffset);
-                let position;
+
+        return columns.forEach((col, ind) => {
+            listOfIndexes.forEach(elem => {
                 if (ind === elem) {
-                    console.log(ind, elem);
-
-                    // alert(ind);
-                    position = elem;
-                    col.style.backgroundColor = 'red';
-                    col.style.left = position + elemOffset + 'px';
-                }
-                else {
-                    col.style.backgroundColor = 'blue';
+                    console.log('Yes');
 
                 }
             });
-        })
 
+            const elemOffset = col.offsetWidth;
+            //console.log(elemOffset);
+            let positionLeft;
+            let positionRight;
+            if (ind === activeIndexes.first && ind+1 === activeIndexes.second) {
+                console.log(ind, ind+1);
+
+                // alert(ind);
+                positionLeft = ind;
+                positionRight = ind+1;
+                col.style.backgroundColor = 'red';
+                col.style.left = positionLeft + 17 + 'px';
+                //col.style.left = positionRight + 10 + 'px';
+            }
+            // else {
+            //     col.style.backgroundColor = 'blue';
+            //
+            // }
+        });
 
 
         // return columns.forEach((col, ind) => {
@@ -138,7 +146,6 @@ class Draw {
         // })
 
 
-
     }
 
 
@@ -155,8 +162,7 @@ inputShow.addEventListener('change', () => draw.drawArray());
 
 
 let increase = document.getElementById('inc');
-increase.addEventListener('click',() => draw.movement(sort.increaseSort()));
-
+increase.addEventListener('click', () => draw.movement(sort.increaseSort()));
 
 
 let decrease = document.getElementById('dec');
