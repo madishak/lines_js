@@ -87,63 +87,31 @@ class Draw {
 
     }
 
+
     movement() {
         let listOfIndexes = this.arrayAndIndexes.indexes;   //indexes' stack (sort steps)
 
         const [...columns] = document.getElementsByClassName('line'); //columns => HTML objects
 
-        let activeIndexes = {};
-
-        activeIndexes.first = listOfIndexes[0];
-        activeIndexes.second = listOfIndexes[1];
-
-        console.log(activeIndexes.first, activeIndexes.second);
+        return listOfIndexes.forEach((pos, i) => {
 
 
+            columns.forEach((col, ind) => {
+                const elemOffset = col.offsetWidth;
 
-        return columns.forEach((col, ind) => {
-            listOfIndexes.forEach(elem => {
-                if (ind === elem) {
-                    console.log('Yes');
 
+                if (ind === pos) {
+                    // col.style.backgroundColor = 'red';
+                    //col.classList.add('move-right');
+                    if (col.id === 4) {
+                        return col.classList.add('move-left');
+                    }
+
+                    // col.style.left = pos + elemOffset + 'px';
                 }
+
             });
-
-            const elemOffset = col.offsetWidth;
-            //console.log(elemOffset);
-            let positionLeft;
-            let positionRight;
-            if (ind === activeIndexes.first && ind+1 === activeIndexes.second) {
-                console.log(ind, ind+1);
-
-                // alert(ind);
-                positionLeft = ind;
-                positionRight = ind+1;
-                col.style.backgroundColor = 'red';
-                col.style.left = positionLeft + 17 + 'px';
-                //col.style.left = positionRight + 10 + 'px';
-            }
-            // else {
-            //     col.style.backgroundColor = 'blue';
-            //
-            // }
-        });
-
-
-        // return columns.forEach((col, ind) => {
-        //     const elemOffset = col.offsetLeft;
-        //     console.log(elemOffset);
-        //
-        //     listOfIndexes.forEach((elem, i) => {
-        //         if (ind === elem) {
-        //
-        //             alert(ind);
-        //             let position = listOfIndexes[i];
-        //             col.style.backgroundColor = 'red';
-        //             return col.style.left = position + 'px';
-        //         }
-        //     });
-        // })
+        })
 
 
     }

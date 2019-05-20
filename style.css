@@ -89,11 +89,11 @@ blockquote, q {
     position: relative;
     /*right: 0;*/
     left: 0;
-    transition: left 3s cubic-bezier(0, 0, 1, 1);
+    /*transition: left 3s cubic-bezier(0, 0, 1, 1);*/
     border: 1px solid yellow;
     background-color: rebeccapurple;
     height: 150px;
-    width: 7px;
+    width: 17px;
     color: white;
     font-size: 90%;
     margin-top: 35px;
@@ -103,14 +103,49 @@ blockquote, q {
 
 }
 
-/*.move_left {*/
-    /*position: relative;*/
+.move_left {
+    position: relative;
     /*left: 0;*/
-    /*transition: left 3s cubic-bezier(0, 0, 1, 1);*/
-/*}*/
+    right: 0;
+    animation-name: test1;
+    animation-fill-mode: forwards;
+    animation-duration: 2s;
 
-/*.move_right {*/
-    /*position: relative;*/
-    /*right: 0;*/
-    /*transition: right 3s cubic-bezier(0, 0, 1, 1);*/
-/*}*/
+}
+
+.move_right {
+    position: relative;
+    left: 0;
+    animation-name: test2;
+    animation-fill-mode: forwards;
+
+    animation-duration: 2s;
+}
+
+@keyframes test1 {
+    from {
+
+        right: 0;
+        transition: right 0.5s cubic-bezier(0, 0, 1, 1);
+    }
+    to {
+
+
+        right: 60px;
+        transition: right 0.5s cubic-bezier(0, 0, 1, 1);
+    }
+
+}
+
+@keyframes test2 {
+    from {
+
+        left: 0;
+        transition: left 0.5s cubic-bezier(0, 0, 1, 1);
+    }
+    to {
+
+        left: 60px;
+        transition: left 0.5s cubic-bezier(0, 0, 1, 1);
+    }
+}
