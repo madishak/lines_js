@@ -69,83 +69,74 @@ blockquote, q {
 
 }
 
-/*.main_inner {*/
-    /*position: relative;*/
-    /*display: flex;*/
-    /*justify-content: center;*/
-    /*width: auto;*/
-
-/*}*/
 
 .line__inner {
-    /*position: absolute;*/
+    /*position: relative;*/
     /*margin: 0 auto;*/
+    /*!*display: inline-block;*!*/
     /*display: flex;*/
     /*justify-content: center;*/
-    /*width: auto;*/
+    /*!*width: auto;*!*/
 
 }
 .line {
-    position: relative;
-    /*right: 0;*/
+    position: absolute;
     left: 0;
-    /*transition: left 3s cubic-bezier(0, 0, 1, 1);*/
+    transition: left 0.6s;
     border: 1px solid yellow;
-    background-color: rebeccapurple;
+    background-color: dodgerblue;
     height: 150px;
-    width: 17px;
+    width: 20px;
     color: white;
     font-size: 90%;
-    margin-top: 35px;
-    /*margin-right: 20px;*/
-
+    margin: 15px;
+    text-align: center;
 
 
 }
 
-.move_left {
-    position: relative;
+/*.move_left {*/
+    /*position: relative;*/
+    /*right: 0;*/
+    /*animation-name: test1;*/
+    /*animation-fill-mode: forwards;*/
+    /*animation-duration: 2s;*/
+
+/*}*/
+
+/*.move_right {*/
+    /*position: relative;*/
     /*left: 0;*/
-    right: 0;
-    animation-name: test1;
-    animation-fill-mode: forwards;
-    animation-duration: 2s;
+    /*animation-name: test2;*/
+    /*animation-fill-mode: forwards;*/
 
-}
+    /*animation-duration: 2s;*/
+/*}*/
 
-.move_right {
-    position: relative;
-    left: 0;
-    animation-name: test2;
-    animation-fill-mode: forwards;
+/*@keyframes test1 {*/
+    /*from {*/
 
-    animation-duration: 2s;
-}
-
-@keyframes test1 {
-    from {
-
-        right: 0;
-        transition: right 0.5s cubic-bezier(0, 0, 1, 1);
-    }
-    to {
+        /*right: 0;*/
+        /*transition: right 0.5s cubic-bezier(0, 0, 1, 1);*/
+    /*}*/
+    /*to {*/
 
 
-        right: 60px;
-        transition: right 0.5s cubic-bezier(0, 0, 1, 1);
-    }
+        /*right: 60px;*/
+        /*transition: right 0.5s cubic-bezier(0, 0, 1, 1);*/
+    /*}*/
 
-}
+/*}*/
 
-@keyframes test2 {
-    from {
+/*@keyframes test2 {*/
+    /*from {*/
 
-        left: 0;
-        transition: left 0.5s cubic-bezier(0, 0, 1, 1);
-    }
-    to {
+        /*left: 0;*/
+        /*transition: left 0.5s cubic-bezier(0, 0, 1, 1);*/
+    /*}*/
+    /*to {*/
 
-        left: 60px;
-        transition: left 0.5s cubic-bezier(0, 0, 1, 1);
-    }
-}
+        /*left: 60px;*/
+        /*transition: left 0.5s cubic-bezier(0, 0, 1, 1);*/
+    /*}*/
+/*}*/

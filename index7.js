@@ -3,11 +3,6 @@ class Sort {
         this.numsArr = numberString.split("").map(element => Number(element));
         this.arr = this.numsArr.slice(0);
         this.listOfIndexes = [];
-        this.struct = {"arr": this.arr}
-    }
-
-    arrayAndIndexes() {
-        return this.struct;
     }
 
 
@@ -18,13 +13,11 @@ class Sort {
                 this.listOfIndexes.shift(this.listOfIndexes[0]);
                 this.listOfIndexes.shift(this.listOfIndexes[1]);
 
-                this.struct.indexes = this.listOfIndexes;
-                this.struct.arr = this.arr;
-
-
                 return this.arr;
             }
+
         }
+        return this.arr;
     }
 
 
@@ -37,18 +30,13 @@ class Sort {
                 if (this.arr[i] > this.arr[i + 1]) {
                     [this.arr[i], this.arr[i + 1]] = [this.arr[i + 1], this.arr[i]];
                     this.listOfIndexes = [i, i + 1, ...this.listOfIndexes];
-                    console.log(this.listOfIndexes);
                     flag = true;
-
-                    this.struct.indexes = this.listOfIndexes;
-                    this.struct.arr = this.arr;
-
-
                     return this.arr;
                 }
+
             }
         }
-
+        return this.arr;
 
     }
 
@@ -56,17 +44,18 @@ class Sort {
 }
 
 class Draw {
-    constructor(sequence) {
-        this.arrayAndIndexes = sequence;
-        this.arr = this.arrayAndIndexes.arr;
+    constructor(array) {
+        this.arr = array;
+        this.columnIndexArr = [];
 
     }
 
 
     drawArray() {
-        //alert(this.arrayAndIndexes.indexes);
+
         const fixedColumnHeight = 15;
-        const columnMargin = 5;
+
+        const offset = 30;
 
         let container = document.createElement('div');
         container.className = "line__inner";
@@ -79,39 +68,46 @@ class Draw {
             newDiv.innerHTML = this.arr[i];
             newDiv.id = this.arr[i];
             newDiv.className = "line";
+            this.columnIndexArr.push(i);
             container.appendChild(newDiv);
-            newDiv.style.height = fixedColumnHeight * this.arr[i] + 'px';
-            //newDiv.style.left = i * columnMargin + 'px';
-            newDiv.style.display = 'inline-block';
+            newDiv.style.height = `${fixedColumnHeight * this.arr[i]}px`;
+            newDiv.style.left =  `${i * offset}px`;
         }
 
     }
 
 
-    movement() {
-        let listOfIndexes = this.arrayAndIndexes.indexes;   //indexes' stack (sort steps)
+    movement(newArr) {
+        const bg = {
+            first : 0,
+            second : 1
+        };
+
+
+        const columnMargin = 30;
 
         const [...columns] = document.getElementsByClassName('line'); //columns => HTML objects
 
-        return listOfIndexes.forEach((pos, i) => {
+
+        for (let i = 0; i < newArr.length; i++) {
+            if (newArr[i] !== this.arr[i]) {
+                [this.columnIndexArr[i], this.columnIndexArr[i+1]] = [this.columnIndexArr[i+1], this.columnIndexArr[i]];
+                bg.first = this.columnIndexArr[i];
+                bg.second = this.columnIndexArr[i+1];
+
+                break;
+            }
+        }
+        for (let i = 0; i < columns.length; i++) {
+            columns[this.columnIndexArr[i]].style.left = `${i * columnMargin}px`;
+            columns[this.columnIndexArr[i]].style.backgroundColor = 'dodgerblue';
+            columns[bg.first].style.backgroundColor = 'red';
+            columns[bg.second].style.backgroundColor = 'red';
 
 
-            columns.forEach((col, ind) => {
-                const elemOffset = col.offsetWidth;
+        }
+        this.arr = [...newArr];// плохо
 
-
-                if (ind === pos) {
-                    // col.style.backgroundColor = 'red';
-                    //col.classList.add('move-right');
-                    if (col.id === 4) {
-                        return col.classList.add('move-left');
-                    }
-
-                    // col.style.left = pos + elemOffset + 'px';
-                }
-
-            });
-        })
 
 
     }
@@ -123,7 +119,11 @@ let inputValue = document.getElementById('input').value;
 
 let sort = new Sort(inputValue);
 
-let draw = new Draw(sort.arrayAndIndexes());
+let draw = new Draw(sort.arr);
+
+
+draw.movement(sort.arr);
+console.log(sort.arr);
 
 let inputShow = document.getElementById('input');
 inputShow.addEventListener('change', () => draw.drawArray());
@@ -134,7 +134,7 @@ increase.addEventListener('click', () => draw.movement(sort.increaseSort()));
 
 
 let decrease = document.getElementById('dec');
-decrease.addEventListener('click', () => draw.drawArray(sort.decreaseSort()));
+decrease.addEventListener('click', () => draw.movement(sort.decreaseSort()));
 
 
 
