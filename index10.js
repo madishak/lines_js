@@ -63,10 +63,13 @@ class Draw {
 
         const OFFSET = 30;
 
+        let linesWrapper = document.querySelector('.lines__wrapper');
+        //document.body.appendChild(container);
+
         let container = document.createElement('div');
         container.className = "line__inner";
         container.id = "line__inner";
-        document.body.appendChild(container);
+        linesWrapper.appendChild(container);
 
         for (let i = 0; i < this.arr.length; i++) {
 
@@ -79,8 +82,7 @@ class Draw {
             newDiv.style.left =  `${i * OFFSET}px`;
             container.appendChild(newDiv);
         }
-
-
+        console.log(this.columnIndexArr);
     }
 
 
@@ -148,14 +150,17 @@ const renderCollection = (a) => {
     let increase = document.getElementById('inc');
     increase.addEventListener('click', () => draw.movement(sort.increaseSort()));
 
-    let deleteValue = document.getElementById('delete');
-    deleteValue.addEventListener('click',() => {
-       // return document.getElementById('delete').value = "";
-        alert("Tiffo");
-        // if (a.length !== 0) {
-        //     a = "";
-        // }
-        // return a;
-    });
+
 
 };
+
+
+let deleteValue = document.getElementById('delete');
+deleteValue.addEventListener('click',() => {
+    return document.getElementById('delete').value = "";
+    //alert("Tiffo");
+    // if (a.length !== 0) {
+    //     a = "";
+    // }
+    // return a;
+});

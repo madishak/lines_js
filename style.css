@@ -69,6 +69,14 @@ blockquote, q {
 
 }
 
+.lines__wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-between;
+
+
+}
 
 .line__inner {
     /*position: relative;*/
@@ -77,6 +85,7 @@ blockquote, q {
     /*display: flex;*/
     /*justify-content: center;*/
     /*!*width: auto;*!*/
+    display: block;
 
 }
 .line {
